@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>独立域名配置 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="domain," />
+  
+
+  <meta name="description" content="本文是github+hexo搭建博客的第二部分，解决域名解析的问题。
+购买域名我选择使用的域名服务商是GoDaddy，可以使用支付宝，价格也不贵，我购买的价钱大概是60元一年。细节就不赘述了，GoDaddy的网站做的很简单，购买流程很顺畅。
+将个人域名与Github Pages的空间绑定我的本地站点名称是 hexo-site ，详细的建立过程见 在Mac上github＋hexo搭建博客（一）在 h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="独立域名配置">
+<meta property="og:url" content="http://lilyalove.com/2016/05/19/domain-config/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文是github+hexo搭建博客的第二部分，解决域名解析的问题。
+购买域名我选择使用的域名服务商是GoDaddy，可以使用支付宝，价格也不贵，我购买的价钱大概是60元一年。细节就不赘述了，GoDaddy的网站做的很简单，购买流程很顺畅。
+将个人域名与Github Pages的空间绑定我的本地站点名称是 hexo-site ，详细的建立过程见 在Mac上github＋hexo搭建博客（一）在 h">
+<meta property="og:image" content="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod1.png">
+<meta property="og:image" content="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod3.png">
+<meta property="og:image" content="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod2.png">
+<meta property="og:image" content="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod4.png">
+<meta property="og:updated_time" content="2016-05-19T13:32:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="独立域名配置">
+<meta name="twitter:description" content="本文是github+hexo搭建博客的第二部分，解决域名解析的问题。
+购买域名我选择使用的域名服务商是GoDaddy，可以使用支付宝，价格也不贵，我购买的价钱大概是60元一年。细节就不赘述了，GoDaddy的网站做的很简单，购买流程很顺畅。
+将个人域名与Github Pages的空间绑定我的本地站点名称是 hexo-site ，详细的建立过程见 在Mac上github＋hexo搭建博客（一）在 h">
+<meta name="twitter:image" content="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#购买域名"><span class="toc-text">购买域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将个人域名与Github-Pages的空间绑定"><span class="toc-text">将个人域名与Github Pages的空间绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS设置"><span class="toc-text">DNS设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加域名"><span class="toc-text">添加域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#去GoDaddy修改DNS地址"><span class="toc-text">去GoDaddy修改DNS地址</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-domain-config" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">独立域名配置</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.19</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2016/05/19/domain-config/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>本文是github+hexo搭建博客的第二部分，解决域名解析的问题。</p>
+<h2 id="购买域名"><a href="#购买域名" class="headerlink" title="购买域名"></a>购买域名</h2><p>我选择使用的域名服务商是GoDaddy，可以使用支付宝，价格也不贵，我购买的价钱大概是60元一年。<br>细节就不赘述了，GoDaddy的网站做的很简单，购买流程很顺畅。</p>
+<h2 id="将个人域名与Github-Pages的空间绑定"><a href="#将个人域名与Github-Pages的空间绑定" class="headerlink" title="将个人域名与Github Pages的空间绑定"></a>将个人域名与Github Pages的空间绑定</h2><p>我的本地站点名称是 hexo-site ，详细的建立过程见 <a href="http://lilyalove.com/2016/05/09/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%99%EF%BC%88%E4%B8%80%EF%BC%89/">在Mac上github＋hexo搭建博客（一）</a><br>在 <code>hexo-site\source</code> 文件夹里新建一个名为 <code>CNAME</code> 的文件，用<code>sublime</code> 编辑器打开，或者本地编辑器也行，添加内容 <code>lilyalove.com</code>，也就是你购买的域名，保存。<br>部署博客即可。</p>
+<p>部署的方式：<br>1、生成文件，用 <code>hexo generate</code> 命令<br>2、部署，用 <code>hexo deploy</code> 命令即可<br>3、记得将 <code>_config</code> 文件里面的 <code>url</code> 改为你的个人域名。</p>
+<p>如果编译的过程都顺利的话，就部署成功了。</p>
+<h2 id="DNS设置"><a href="#DNS设置" class="headerlink" title="DNS设置"></a>DNS设置</h2><p>经过朋友的推荐，我选择 DNSpod 来设置DNS，速度快、免费、且稳定。<br>注册过程不详谈了。</p>
+<h2 id="添加域名"><a href="#添加域名" class="headerlink" title="添加域名"></a>添加域名</h2><p>如下图设置：<br><img src="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod1.png" alt="add domain"></p>
+<p>方法一：<br>如上图所示，其中两条A记录指向的IP地址是GitHub Pages的提供的IP：<br>192.30.252.153<br>192.30.252.154</p>
+<p>如果博客不能访问，有可能是GitHub更改了空间服务的ip地址，及时到GitHub Pages查看最新的IP即可。<br>www指定的记录是你在GitHub托管博客的仓库。</p>
+<p>方法二：<br>不使用A记录，直接使用CNAME，记录值为 <code>lilyalove.com</code>，也就是你自己的域名即可。</p>
+<h2 id="去GoDaddy修改DNS地址"><a href="#去GoDaddy修改DNS地址" class="headerlink" title="去GoDaddy修改DNS地址"></a>去GoDaddy修改DNS地址</h2><p>更改GoDaddy的Nameservers为DNSpod的NameServers,点击域名管理</p>
+<p><img src="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod3.png" alt="domain"></p>
+<p>将GoDaddy的Nameservers更改成f1g1ns1.dnspod.net和f1g1ns2.dnspod.net</p>
+<p><img src="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod2.png" alt="custom"></p>
+<p>最后修改成下图所示即可：</p>
+<p><img src="http://7xnuu7.com1.z0.glb.clouddn.com/blogdnspod4.png" alt="details"></p>
+<p>有疑问可以看DNSpod提供的官方帮助。<br>提示：设置DNS之后短时间内可能无法访问你的个人博客，因为要等待全球递归DNS服务器刷新（最多72小时），不过没问题的话几小时内就可以访问了。</p>
+<p>注：编写这篇文章时遇到了一个诡异的问题，如上所示，我写完文章进行 <code>hexo generate</code>时，总是提醒我有语法问题，提示如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Template render error: (unknown path)</span><br><span class="line">  SyntaxError: Unexpected token ILLEGAL</span><br><span class="line">    at Object.exports.prettifyError (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/lib.js:34:15)</span><br><span class="line">    at Obj.extend.render (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/environment.js:468:27)</span><br><span class="line">    at Obj.extend.renderString (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/environment.js:326:21)</span><br><span class="line">    at /Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/extend/tag.js:66:9</span><br><span class="line">    at Promise._execute (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/debuggability.js:272:9)</span><br><span class="line">    at Promise._resolveFromExecutor (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:473:18)</span><br><span class="line">    at new Promise (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:77:14)</span><br><span class="line">    at Tag.render (/Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/extend/tag.js:64:10)</span><br><span class="line">    at Object.tagFilter [as onRenderEnd] (/Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/hexo/post.js:253:16)</span><br><span class="line">    at /Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/hexo/render.js:63:19</span><br><span class="line">    at tryCatcher (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:502:31)</span><br><span class="line">    at Promise._settlePromise (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:559:18)</span><br><span class="line">    at Promise._settlePromise0 (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:604:10)</span><br><span class="line">    at Promise._settlePromises (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:683:18)</span><br><span class="line">    at Async._drainQueue (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:138:16)</span><br><span class="line">    at Async._drainQueues (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:148:10)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:17:14)</span><br><span class="line">    at processImmediate [as _immediateCallback] (timers.js:383:17)</span><br><span class="line">FATAL (unknown path)</span><br><span class="line">  SyntaxError: Unexpected token ILLEGAL</span><br><span class="line">Template render error: (unknown path)</span><br><span class="line">  SyntaxError: Unexpected token ILLEGAL</span><br><span class="line">    at Object.exports.prettifyError (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/lib.js:34:15)</span><br><span class="line">    at Obj.extend.render (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/environment.js:468:27)</span><br><span class="line">    at Obj.extend.renderString (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/nunjucks/src/environment.js:326:21)</span><br><span class="line">    at /Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/extend/tag.js:66:9</span><br><span class="line">    at Promise._execute (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/debuggability.js:272:9)</span><br><span class="line">    at Promise._resolveFromExecutor (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:473:18)</span><br><span class="line">    at new Promise (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:77:14)</span><br><span class="line">    at Tag.render (/Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/extend/tag.js:64:10)</span><br><span class="line">    at Object.tagFilter [as onRenderEnd] (/Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/hexo/post.js:253:16)</span><br><span class="line">    at /Users/baoli/Desktop/hexo-site/node_modules/hexo/lib/hexo/render.js:63:19</span><br><span class="line">    at tryCatcher (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/util.js:16:23)</span><br><span class="line">    at Promise._settlePromiseFromHandler (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:502:31)</span><br><span class="line">    at Promise._settlePromise (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:559:18)</span><br><span class="line">    at Promise._settlePromise0 (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:604:10)</span><br><span class="line">    at Promise._settlePromises (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/promise.js:683:18)</span><br><span class="line">    at Async._drainQueue (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:138:16)</span><br><span class="line">    at Async._drainQueues (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:148:10)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (/Users/baoli/Desktop/hexo-site/node_modules/hexo/node_modules/bluebird/js/release/async.js:17:14)</span><br><span class="line">    at processImmediate [as _immediateCallback] (timers.js:383:17)</span><br></pre></td></tr></table></figure>
+<p>这个问题我查了半天，都没有合理的解答，而且我逐字逐句的检查了一遍文章的语法，也没有发现问题。<br>于是我用了一个蠢办法，我把整篇文章一点一点地复制粘贴，然后生成。想看看到底哪句话有语法问题。<br>结果整篇文章生成成功了。。。<br>表示心真累。<br>现状就是我成功生成了文章，但并不知道之前到底出了什么问题。。。hexo不会是看心情编译吧。。。求看到问题的大神给我一个解答，多谢。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2016/05/19/domain-config/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
