@@ -25,8 +25,9 @@
 搭建了博客，很自然的要写博客呀，不然不就白搭了么，写博客除了文字，当然图片也不会少了。我搭博客使用的是hexo＋github，但是githubPages只提供300m的空间，想想都觉得肯定不是用来储存图片的好方法了。于是通过了解，使用七牛来储存图片还">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu.png">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu-space.png">
+<meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outchain.png">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outside-chain.png">
-<meta property="og:updated_time" content="2016-05-21T07:03:34.000Z">
+<meta property="og:updated_time" content="2016-05-21T07:09:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用七牛来储存博客图片">
 <meta name="twitter:description" content="对于我这种不太懂技术的人来说，搭建博客的每一个过程都不算轻松，但是做到了想做的事情之后却非常的开心。这篇博客主要是讲一下我使用七牛来储存图片的方法。
@@ -215,9 +216,10 @@
 <h2 id="同步图片到七牛"><a href="#同步图片到七牛" class="headerlink" title="同步图片到七牛"></a>同步图片到七牛</h2><p>放好图片后，在hexo中输入</p>
 <pre><code>hexo qiniu sync
 </code></pre><p>既可以同步图片到七牛了</p>
-<h2 id="获取图片外链"><a href="#获取图片外链" class="headerlink" title="获取图片外链"></a>获取图片外链</h2><ol>
-<li>把建立的空间设为公开空间；</li>
-<li>关闭；</li>
+<h2 id="获取图片外链"><a href="#获取图片外链" class="headerlink" title="获取图片外链"></a>获取图片外链</h2><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outchain.png" alt=""></p>
+<ol>
+<li>在高级设置里面把访问控制改为公共空间；</li>
+<li>把原文件保护关闭，则可以进入个人空间－内容管理了；</li>
 <li>在图片列表里面获取文件的外链即可，如下图所示</li>
 </ol>
 <p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outside-chain.png" alt=""></p>
