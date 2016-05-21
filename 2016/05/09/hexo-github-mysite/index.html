@@ -35,7 +35,6 @@ hexo：是一个快速、简洁且高速的静态页面发布框架，使用Mark
 github 、hexo简介
 github：开源代码库以及版本控制系统，其中githubpages提供300M的免费空间，拿来做博客够用了。
 hexo：是一个快速、简洁且高速的静态页面发布框架，使用Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/326377-5868656ecedf7e76.png?imageMogr2/auto-orient/strip%7CimageView2/2">
 
   
 
@@ -47,7 +46,7 @@ hexo：是一个快速、简洁且高速的静态页面发布框架，使用Mark
 
 
   
-    <link rel="stylesheet" href="/css/personal-style.css">
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
   
 
   
@@ -215,7 +214,7 @@ hexo：是一个快速、简洁且高速的静态页面发布框架，使用Mark
 </ul>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <p><strong>使用命令行装软件的时候 ，当前在哪个路径下，就会装到哪个路径下。 系统的软件除外。 hexo 和 npm 安装的时候有默认路径因此我们不用特意去创建安装文件夹。</strong><br>注意： hexo的时候可能会出现这样的错误</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; [Error: Cannot find module &apos;./build/Release/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br><span class="line">&#123; [Error: Cannot find module &apos;./build/default/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br><span class="line">&#123; [Error: Cannot find module &apos;./build/Debug/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; [Error: Cannot find module &#39;./build/Release/DTraceProviderBindings&#39;] code: &#39;MODULE_NOT_FOUND&#39; &#125;&#10;&#123; [Error: Cannot find module &#39;./build/default/DTraceProviderBindings&#39;] code: &#39;MODULE_NOT_FOUND&#39; &#125;&#10;&#123; [Error: Cannot find module &#39;./build/Debug/DTraceProviderBindings&#39;] code: &#39;MODULE_NOT_FOUND&#39; &#125;</span><br></pre></td></tr></table></figure>
 <p>原因是 我国防火墙网络墙的问题，导致安装的时候少装了几个库。 解决方法，换一个源重新装:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ npm install hexo --no-optional</span><br></pre></td></tr></table></figure>
 <p>hexo 下载完成后 运行一下 看是否安装成功</p>
@@ -235,11 +234,11 @@ hexo：是一个快速、简洁且高速的静态页面发布框架，使用Mark
 <p><strong>方法如下:</strong></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>在开始之前，您必须先在 _config.yml 中修改参数，一个正确的部署配置中至少要有 type 参数，例如：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">－ type: git</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;&#65293; type: git</span><br></pre></td></tr></table></figure>
 <p><strong>Git</strong><br>安装 hexo-deployer-git</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>修改配置。<br>在上面提到的 _config.yml 文件中修改 deploy 的参数，包括 </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: &lt;repository url&gt;</span><br><span class="line">  branch: [branch]</span><br><span class="line">  message: [message]</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: &#60;repository url&#62;&#10;  branch: [branch]&#10;  message: [message]</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
 <tr>
