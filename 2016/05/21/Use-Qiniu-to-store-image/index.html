@@ -15,23 +15,29 @@
     <meta name="keywords" content="技术," />
   
 
-  <meta name="description" content="对于我这种不太懂技术的人来说，搭建博客的每一个过程都不算轻松，但是做到了想做的事情之后却非常的开心。这篇博客主要是讲一下我使用七牛来储存图片的方法。
-搭建了博客，很自然的要写博客呀，不然不就白搭了么，写博客除了文字，当然图片也不会少了。我搭博客使用的是hexo＋github，但是githubPages只提供300m的空间，想想都觉得肯定不是用来储存图片的好方法了。于是通过了解，使用七牛来储存图片还">
+  <meta name="description" content="七牛七牛提供10g的永久免费存储空间以及每月10GB的下载流量，完全够一个小小的个人博客使用了。而且，就我个人注册和配置过程来看，七牛操作起来很简便，很省事
+如何配置在七牛上建立自己的空间选择第一项 对象存储，设置自己的空间名称，找到外链默认域名，我的是o7i9sckjd.bkt.clouddn.com。
+上传一张图片到七牛上，比如me.png，则可以通过以下链接来进行访问
+http://o7i9">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用七牛来储存博客图片">
 <meta property="og:url" content="http://lilyalove.com/2016/05/21/Use-Qiniu-to-store-image/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="对于我这种不太懂技术的人来说，搭建博客的每一个过程都不算轻松，但是做到了想做的事情之后却非常的开心。这篇博客主要是讲一下我使用七牛来储存图片的方法。
-搭建了博客，很自然的要写博客呀，不然不就白搭了么，写博客除了文字，当然图片也不会少了。我搭博客使用的是hexo＋github，但是githubPages只提供300m的空间，想想都觉得肯定不是用来储存图片的好方法了。于是通过了解，使用七牛来储存图片还">
+<meta property="og:description" content="七牛七牛提供10g的永久免费存储空间以及每月10GB的下载流量，完全够一个小小的个人博客使用了。而且，就我个人注册和配置过程来看，七牛操作起来很简便，很省事
+如何配置在七牛上建立自己的空间选择第一项 对象存储，设置自己的空间名称，找到外链默认域名，我的是o7i9sckjd.bkt.clouddn.com。
+上传一张图片到七牛上，比如me.png，则可以通过以下链接来进行访问
+http://o7i9">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu.png">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu-space.png">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outchain.png">
 <meta property="og:image" content="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outside-chain.png">
-<meta property="og:updated_time" content="2016-05-21T07:09:38.000Z">
+<meta property="og:updated_time" content="2016-05-21T07:31:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用七牛来储存博客图片">
-<meta name="twitter:description" content="对于我这种不太懂技术的人来说，搭建博客的每一个过程都不算轻松，但是做到了想做的事情之后却非常的开心。这篇博客主要是讲一下我使用七牛来储存图片的方法。
-搭建了博客，很自然的要写博客呀，不然不就白搭了么，写博客除了文字，当然图片也不会少了。我搭博客使用的是hexo＋github，但是githubPages只提供300m的空间，想想都觉得肯定不是用来储存图片的好方法了。于是通过了解，使用七牛来储存图片还">
+<meta name="twitter:description" content="七牛七牛提供10g的永久免费存储空间以及每月10GB的下载流量，完全够一个小小的个人博客使用了。而且，就我个人注册和配置过程来看，七牛操作起来很简便，很省事
+如何配置在七牛上建立自己的空间选择第一项 对象存储，设置自己的空间名称，找到外链默认域名，我的是o7i9sckjd.bkt.clouddn.com。
+上传一张图片到七牛上，比如me.png，则可以通过以下链接来进行访问
+http://o7i9">
 
   
 
@@ -148,7 +154,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#七牛"><span class="toc-text">七牛</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何配置"><span class="toc-text">如何配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在七牛上建立自己的空间"><span class="toc-text">在七牛上建立自己的空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在hexo中安装七牛插件"><span class="toc-text">在hexo中安装七牛插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步图片到七牛"><span class="toc-text">同步图片到七牛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取图片外链"><span class="toc-text">获取图片外链</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#七牛"><span class="toc-text">七牛</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#如何配置"><span class="toc-text">如何配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在七牛上建立自己的空间"><span class="toc-text">在七牛上建立自己的空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在hexo中安装hexo-qiniu-sync插件"><span class="toc-text">在hexo中安装hexo-qiniu-sync插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步图片到七牛"><span class="toc-text">同步图片到七牛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取图片外链"><span class="toc-text">获取图片外链</span></a></li></ol></li></ol>
   </div>
 
 
@@ -191,31 +197,26 @@
 
   <div class="article-content">
     
-      <p>对于我这种不太懂技术的人来说，搭建博客的每一个过程都不算轻松，但是做到了想做的事情之后却非常的开心。这篇博客主要是讲一下我使用七牛来储存图片的方法。</p>
-<p>搭建了博客，很自然的要写博客呀，不然不就白搭了么，写博客除了文字，当然图片也不会少了。我搭博客使用的是hexo＋github，但是githubPages只提供300m的空间，想想都觉得肯定不是用来储存图片的好方法了。<br>于是通过了解，使用七牛来储存图片还是不错的。</p>
-<h1 id="七牛"><a href="#七牛" class="headerlink" title="七牛"></a><a href="http://www.qiniu.com/" target="_blank" rel="external">七牛</a></h1><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu.png" alt=""><br>七牛提供10g的永久免费存储空间以及每月10GB的下载流量，完全够一个小小的个人博客使用了。<br>而且，就我个人注册和配置过程来看，七牛操作起来很简便，很省事</p>
-<h1 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h1><p>这个过程既包括七牛的操作，也包括本地安装七牛插件和配置相关文件。</p>
-<h2 id="在七牛上建立自己的空间"><a href="#在七牛上建立自己的空间" class="headerlink" title="在七牛上建立自己的空间"></a>在七牛上建立自己的空间</h2><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu-space.png" alt=""><br>选择第一项，对象存储，设置自己的空间名称，比如我的叫hexoimages，意味着这个空间会用来存储hexo博客的图片资源。<br>在这里，会生成几个值，一个是外链默认域名，我的是o7i9sckjd.bkt.clouddn.com。</p>
+      <h1 id="七牛"><a href="#七牛" class="headerlink" title="七牛"></a><a href="http://www.qiniu.com/" target="_blank" rel="external">七牛</a></h1><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu.png" alt=""><br>七牛提供10g的永久免费存储空间以及每月10GB的下载流量，完全够一个小小的个人博客使用了。<br>而且，就我个人注册和配置过程来看，七牛操作起来很简便，很省事</p>
+<h1 id="如何配置"><a href="#如何配置" class="headerlink" title="如何配置"></a>如何配置</h1><h2 id="在七牛上建立自己的空间"><a href="#在七牛上建立自己的空间" class="headerlink" title="在七牛上建立自己的空间"></a>在七牛上建立自己的空间</h2><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/qiniu-space.png" alt=""><br>选择第一项 <strong>对象存储</strong>，设置自己的空间名称，找到外链默认域名，我的是o7i9sckjd.bkt.clouddn.com。</p>
 <p>上传一张图片到七牛上，比如me.png，则可以通过以下链接来进行访问</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http://o7i9sckjd.bkt.clouddn.com/me.png</span><br></pre></td></tr></table></figure>
-<h2 id="在hexo中安装七牛插件"><a href="#在hexo中安装七牛插件" class="headerlink" title="在hexo中安装七牛插件"></a>在hexo中安装七牛插件</h2><p>我使用的是 <a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="external">gyk001</a> 的插件。</p>
-<p>这是一个hexo插件， 可以让你在文档中入嵌存储在七牛上的图片、JS、CSS类型的静态文件。</p>
+<h2 id="在hexo中安装hexo-qiniu-sync插件"><a href="#在hexo中安装hexo-qiniu-sync插件" class="headerlink" title="在hexo中安装hexo-qiniu-sync插件"></a>在hexo中安装<a href="https://github.com/gyk001/hexo-qiniu-sync" target="_blank" rel="external">hexo-qiniu-sync</a>插件</h2><p>这是一个hexo插件， 可以让你在文档中入嵌存储在七牛上的图片、JS、CSS类型的静态文件。</p>
 <p>你可以不用手动上传文件到七牛，插件会自动帮你将本地目录的文件同步到七牛。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在本地的hexo主目录（我的目录是hexo-site）下运行以下命令进行安装：</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在本地的hexo主目录下运行以下命令进行安装：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-qiniu-sync --save</span><br></pre></td></tr></table></figure>
 <p>添加插件配置信息到 <code>_config.yml</code> 文件中:</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plugins:&#10;  - hexo-qiniu-sync&#10;&#10;#&#19971;&#29275;&#20113;&#23384;&#20648;&#35774;&#32622;&#10;##offline       &#26159;&#21542;&#31163;&#32447;. &#31163;&#32447;&#29366;&#24577;&#23558;&#20351;&#29992;&#26412;&#22320;&#22320;&#22336;&#28210;&#26579;&#10;##sync          &#26159;&#21542;&#21516;&#27493;&#10;##bucket        &#31354;&#38388;&#21517;&#31216;.&#10;##access_key    &#19978;&#20256;&#23494;&#38053;AccessKey&#10;##secret_key    &#19978;&#20256;&#23494;&#38053;SecretKey&#10;##dirPrefix     &#19978;&#20256;&#30340;&#36164;&#28304;&#23376;&#30446;&#24405;&#21069;&#32512;.&#22914;&#35774;&#32622;&#65292;&#38656;&#19982;urlPrefix&#21516;&#27493; &#10;##urlPrefix     &#22806;&#38142;&#21069;&#32512;. &#10;##local_dir     &#26412;&#22320;&#30446;&#24405;.&#10;##update_exist  &#26159;&#21542;&#26356;&#26032;&#24050;&#32463;&#19978;&#20256;&#36807;&#30340;&#25991;&#20214;(&#20165;&#25991;&#20214;&#22823;&#23567;&#19981;&#21516;&#25110;&#22312;&#19978;&#27425;&#19978;&#20256;&#21518;&#36827;&#34892;&#26356;&#26032;&#30340;&#25165;&#20250;&#37325;&#26032;&#19978;&#20256;)&#10;##image/js/css  &#23376;&#21442;&#25968;folder&#20026;&#19981;&#21516;&#38745;&#24577;&#36164;&#28304;&#31181;&#31867;&#30340;&#30446;&#24405;&#21517;&#31216;&#65292;&#19968;&#33324;&#19981;&#38656;&#35201;&#25913;&#21160;&#10;##image.extend  &#36825;&#26159;&#20010;&#29305;&#27530;&#21442;&#25968;&#65292;&#29992;&#20110;&#29983;&#25104;&#32553;&#30053;&#22270;&#25110;&#21152;&#27700;&#21360;&#31561;&#25805;&#20316;&#12290;&#20855;&#20307;&#35831;&#21442;&#32771;http://developer.qiniu.com/docs/v6/api/reference/fop/image/ &#10;##              &#21487;&#20351;&#29992;&#22522;&#26412;&#22270;&#29255;&#22788;&#29702;&#12289;&#39640;&#32423;&#22270;&#29255;&#22788;&#29702;&#12289;&#22270;&#29255;&#27700;&#21360;&#22788;&#29702;&#36825;3&#20010;&#25509;&#21475;&#12290;&#20363;&#22914; ?imageView2/2/w/500 &#21363;&#29983;&#25104;&#23485;&#24230;&#26368;&#22810;500px&#30340;&#32553;&#30053;&#22270;&#10;qiniu:&#10;  offline: false&#10;  sync: true&#10;  bucket: bucket_name&#10;  access_key: AccessKey&#10;  secret_key: SecretKey&#10;  dirPrefix: static&#10;  urlPrefix: http://bucket_name.qiniudn.com/static&#10;  local_dir: static&#10;  update_exist: true&#10;  image: &#10;    folder: images&#10;    extend: &#10;  js:&#10;    folder: js&#10;  css:&#10;    folder: css</span><br></pre></td></tr></table></figure>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
-<li>配置信息要注意缩进和空格的问题。一定要顶头显示，且不能用tab来缩进，要用两个空格的方式，不然会有各种找不到“offline”或者“bucket”或其他的问题。</li>
-<li>bucket填写自己的空间名</li>
+<li>一定要注意缩进的问题。不能用tab来缩进，要用两个空格。</li>
 <li>access_key和secret_key可以从七牛的“个人面板－密钥管理”里面找就可以了；</li>
-<li>local_dir一定要写static目录的绝对路径，或者相对路径也行，不能直接写个static；同时，要在本地的博客站点根目录下建立一个static的文件夹；</li>
-<li>其他的按照上面的说明来做即可。</li>
+<li>local_dir一定要写static文件夹的准确路径，这个文件夹可以放在任何位置，设置好之后，在static里面存储你要同步到七牛的文件即可；</li>
 </ol>
-<p>配置完成后，使用 <code>hexo generate</code> 生成即可。<br>生成后，会在static的文件夹里生成三个文件夹：image，js，css；<br>可以按照单独的博客名来建立文件夹，给图片分类。<br>例如本文的title是Use-Qiniu-to-store-image，我会在image文件夹里再建一个Use-Qiniu-to-store-image的文件夹，再把本文的图片放到这个文件夹里就好了。</p>
+<p>配置完成后，使用 <code>hexo generate</code> 生成即可。</p>
+<p>生成后，会在static的文件夹里生成三个文件夹：image，js，css；<br>可以按照单独的博客名来建立文件夹，给图片分类。<br>例如本文的title是Use-Qiniu-to-store-image，我会在image文件夹里再建一个Use-Qiniu-to-store-image的文件夹，再把本文的图片放到这个文件夹里就好了。</p>
 <h2 id="同步图片到七牛"><a href="#同步图片到七牛" class="headerlink" title="同步图片到七牛"></a>同步图片到七牛</h2><p>放好图片后，在hexo中输入</p>
 <pre><code>hexo qiniu sync
-</code></pre><p>既可以同步图片到七牛了</p>
+</code></pre><p>就可以同步图片到七牛了</p>
 <h2 id="获取图片外链"><a href="#获取图片外链" class="headerlink" title="获取图片外链"></a>获取图片外链</h2><p><img src="http://o7i9sckjd.bkt.clouddn.com/static/images/Use-Qiniu-to-store-image/outchain.png" alt=""></p>
 <ol>
 <li>在高级设置里面把访问控制改为公共空间；</li>
