@@ -35,7 +35,7 @@ SQLS">
 在一个规范化表格中，行不会对不存在关系的数据暗示其关系
 
 SQLS">
-<meta property="og:updated_time" content="2017-07-28T02:53:52.000Z">
+<meta property="og:updated_time" content="2017-07-28T02:59:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL操作方法">
 <meta name="twitter:description" content="数据库数据库规范规范化是数据库设计的核心思想，规范化涉及在数据库的表格中建立关系，对有关系但是存在于不同表中的数据进行匹配。数据规范化表格的规则如下：
@@ -233,26 +233,26 @@ SQLS">
 <h4 id="日期和时间型"><a href="#日期和时间型" class="headerlink" title="日期和时间型"></a>日期和时间型</h4><p>date — 日历日期，包括年、月、日。</p>
 <p>time — 时间。</p>
 <p>timestamp — 日期和时间。</p>
-<h1 id="访问数据库"><a href="#访问数据库" class="headerlink" title="访问数据库"></a>访问数据库</h1><h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><p>SQLite 是一个关系数据库管理系统。<br>操作数据库之前，我们使用SQLite 的 sqlite3 命令被用来创建新的 SQLite 数据库。</p>
+<h1 id="访问数据库"><a href="#访问数据库" class="headerlink" title="访问数据库"></a>访问数据库</h1><h2 id="SQLite"><a href="#SQLite" class="headerlink" title="SQLite"></a>SQLite</h2><p>SQLite 是一个关系数据库管理系统。<br>操作数据库之前，我们使用SQLite 的 sqlite3 命令被用来创建新的 SQLite 数据库。   </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$sqlite3</span> DatabaseName.db</span><br></pre></td></tr></table></figure>
 <p>通过此命令，可以进入sqlite管理系统中，链接DatabaseName.db数据库。</p>
-<h3 id="尝试一些基本的命令行操作"><a href="#尝试一些基本的命令行操作" class="headerlink" title="尝试一些基本的命令行操作"></a>尝试一些基本的命令行操作</h3><h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><p>查看sqlite中的数据库</p>
+<h3 id="尝试一些基本的命令行操作"><a href="#尝试一些基本的命令行操作" class="headerlink" title="尝试一些基本的命令行操作"></a>尝试一些基本的命令行操作</h3><h4 id="查看数据库"><a href="#查看数据库" class="headerlink" title="查看数据库"></a>查看数据库</h4><p>查看sqlite中的数据库   </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.database</span><br></pre></td></tr></table></figure>
 <h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><p>无论如何，都可以输入.help命令，以获取可用的命令行操作的清单</p>
 <h4 id="table"><a href="#table" class="headerlink" title="table"></a>table</h4><p>数据.table可以看到数据库中的所有数据表。</p>
 <h4 id="schema"><a href="#schema" class="headerlink" title="schema"></a>schema</h4><p>输入.schema table_name，可以看到表格的架构</p>
 <h4 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h4><p>当操作完成时，输入.exit，退出数据库</p>
-<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>如果数据库之前没有被创建，在使用如下命令后，</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>如果数据库之前没有被创建，在使用如下命令后，   </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="variable">$sqlite3</span> DatabaseName.db</span><br></pre></td></tr></table></figure>
 <p>会直接创建一个名为 <figure class="highlight"><figcaption><span>的数据库。</span></figcaption><table><tr><td class="code"><pre><span class="line">&#10;&#20063;&#21487;&#29992;sql&#21019;&#24314;&#25968;&#25454;&#24211;</span><br></pre></td></tr></table></figure></p>
 <p>CREATE DATABASE 数据库名称<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;## &#21019;&#24314;&#25968;&#25454;&#34920;</span><br></pre></td></tr></table></figure></p>
 <p>CREATE TABLE 表名称<br>(<br>列名称1 数据类型,<br>列名称2 数据类型,<br>…….<br>)<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;&#20351;&#29992;&#19978;&#36848;&#26041;&#27861;&#21019;&#24314;&#25968;&#25454;&#34920;&#65292;&#24120;&#35265;&#25968;&#25454;&#31867;&#22411;&#65306;Text, CHAR(size), VARCHAR(size), INT(size), FLOAT(size,d)&#10;&#10;## &#21024;&#38500;&#25968;&#25454;&#34920;</span><br></pre></td></tr></table></figure></p>
-<p>DROP TABLE table_name;<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;&#20351;&#29992;&#19978;&#36848;&#21629;&#20196;&#21487;&#20197;&#21024;&#38500;&#25968;&#25454;&#34920;&#10;&#10;## &#20174;CSV&#25991;&#20214;&#23548;&#20837;&#25968;&#25454;</span><br></pre></td></tr></table></figure></p>
+<p>DROP TABLE table_name;<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">   &#10;&#20351;&#29992;&#19978;&#36848;&#21629;&#20196;&#21487;&#20197;&#21024;&#38500;&#25968;&#25454;&#34920;&#10;&#10;## &#20174;CSV&#25991;&#20214;&#23548;&#20837;&#25968;&#25454;</span><br></pre></td></tr></table></figure></p>
 <p>sqlite&gt; .mode csv<br>sqlite&gt; .import baseball_data.csv baseball_data<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;## &#26356;&#25913;&#25968;&#25454;&#34920;&#21517;&#31216;</span><br></pre></td></tr></table></figure></p>
-<p>sqlite&gt; alter table old_name rename to newname;<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;# &#25968;&#25454;&#24211;&#25805;&#20316;&#10;&#10;&#26681;&#25454;&#19978;&#38754;&#30340;&#26041;&#27861;&#65292;&#25105;&#24314;&#31435;&#20102;&#19968;&#20010;baseball.db&#30340;&#25968;&#25454;&#24211;&#65292;&#24182;&#24314;&#31435;&#20102;&#19968;&#20010;baseball&#25968;&#25454;&#34920;&#12290;&#10;&#10;#### &#26597;&#30475;&#24635;&#34892;&#25968;</span><br></pre></td></tr></table></figure></p>
+<p>sqlite&gt; alter table old_name rename to newname;<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;# &#25968;&#25454;&#24211;&#25805;&#20316;&#10;&#10;&#26681;&#25454;&#19978;&#38754;&#30340;&#26041;&#27861;&#65292;&#25105;&#24314;&#31435;&#20102;&#19968;&#20010;baseball.db&#30340;&#25968;&#25454;&#24211;&#65292;&#24182;&#24314;&#31435;&#20102;&#19968;&#20010;baseball&#25968;&#25454;&#34920;&#12290;&#10;&#10;#### &#26597;&#30475;&#24635;&#34892;&#25968;   &#10;&#20195;&#30721;&#22914;&#19979;&#65306;</span><br></pre></td></tr></table></figure></p>
 <p>select count(*) from baseball;</p>
 <p>打印结果：</p>
-<p>count(*)<br>1157<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;#### &#25214;&#20986;&#20351;&#29992;&#21491;&#25163;&#65292;&#36523;&#39640;&#22312;72~75&#20043;&#38388;&#65292;&#20307;&#37325;&#26368;&#39640;&#30340;5&#20010;&#20154;&#30340;&#20449;&#24687;</span><br></pre></td></tr></table></figure></p>
+<p>count(*)<br>1157<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#10;#### &#25214;&#20986;&#20351;&#29992;&#21491;&#25163;&#65292;&#36523;&#39640;&#22312;72~75&#20043;&#38388;&#65292;&#20307;&#37325;&#26368;&#39640;&#30340;5&#20010;&#20154;&#30340;&#20449;&#24687;  &#10;&#20195;&#30721;&#22914;&#19979;&#65306;</span><br></pre></td></tr></table></figure></p>
 <p>select * from baseball<br>where handedness == ‘R’ and height &gt;= 72 and height &lt;= 75<br>order by weight<br>limit 5;</p>
 <p>打印结果：</p>
 <p>“Ramon Manon”,R,72,150,0.0,0<br>“Manny Trillo”,R,73,150,0.263,61<br>“Dave Concepcion”,R,74,155,0.267,101<br>“Frank Taveras”,R,72,155,0.255,2<br>“Rafael Vasquez”,R,72,160,0.0,0<br>```</p>
