@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>AB Test 评估准则 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="data," />
+  
+
+  <meta name="description" content="本文记录 AB Test 评估准则，用于指导 AB Test设计度量选择
+
+
+标准
+符合要求
+
+
+
+
+是否为试验选择了适当的不变量和评估指标？
+已为试验选好一组适当的度量，未遗漏任何必要或重要度量。
+
+
+是否为度量选择提供了合理理由？
+每个度量都有清楚合理的理由，解释为何将其选作不变度量及评估度量。
+
+
+我们希望通过开展此试验得到什么结果？
+报告中清楚地说明了我们希望通过开展此试验取得的结果，且所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AB Test 评估准则">
+<meta property="og:url" content="http://lilyalove.com/2017/08/03/AB-test-assessment/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文记录 AB Test 评估准则，用于指导 AB Test设计度量选择
+
+
+标准
+符合要求
+
+
+
+
+是否为试验选择了适当的不变量和评估指标？
+已为试验选好一组适当的度量，未遗漏任何必要或重要度量。
+
+
+是否为度量选择提供了合理理由？
+每个度量都有清楚合理的理由，解释为何将其选作不变度量及评估度量。
+
+
+我们希望通过开展此试验得到什么结果？
+报告中清楚地说明了我们希望通过开展此试验取得的结果，且所">
+<meta property="og:updated_time" content="2017-08-03T03:45:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AB Test 评估准则">
+<meta name="twitter:description" content="本文记录 AB Test 评估准则，用于指导 AB Test设计度量选择
+
+
+标准
+符合要求
+
+
+
+
+是否为试验选择了适当的不变量和评估指标？
+已为试验选好一组适当的度量，未遗漏任何必要或重要度量。
+
+
+是否为度量选择提供了合理理由？
+每个度量都有清楚合理的理由，解释为何将其选作不变度量及评估度量。
+
+
+我们希望通过开展此试验得到什么结果？
+报告中清楚地说明了我们希望通过开展此试验取得的结果，且所">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#本文记录-AB-Test-评估准则，用于指导-AB-Test设计"><span class="toc-text">本文记录 AB Test 评估准则，用于指导 AB Test设计</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#度量选择"><span class="toc-text">度量选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变异性"><span class="toc-text">变异性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#规模"><span class="toc-text">规模</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#完整性检验"><span class="toc-text">完整性检验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#效应量检验"><span class="toc-text">效应量检验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#符号检验"><span class="toc-text">符号检验</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结果汇总"><span class="toc-text">结果汇总</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议"><span class="toc-text">建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根进实验"><span class="toc-text">根进实验</span></a>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-AB-test-assessment" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">AB Test 评估准则</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/数据分析/">数据分析</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/08/03/AB-test-assessment/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="本文记录-AB-Test-评估准则，用于指导-AB-Test设计"><a href="#本文记录-AB-Test-评估准则，用于指导-AB-Test设计" class="headerlink" title="本文记录 AB Test 评估准则，用于指导 AB Test设计"></a>本文记录 AB Test 评估准则，用于指导 AB Test设计</h3><h1 id="度量选择"><a href="#度量选择" class="headerlink" title="度量选择"></a>度量选择</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否为试验选择了适当的不变量和评估指标？</td>
+<td>已为试验选好一组适当的度量，未遗漏任何必要或重要度量。</td>
+</tr>
+<tr>
+<td>是否为度量选择提供了合理理由？</td>
+<td>每个度量都有清楚合理的理由，解释为何将其选作不变度量及评估度量。</td>
+</tr>
+<tr>
+<td>我们希望通过开展此试验得到什么结果？</td>
+<td>报告中清楚地说明了我们希望通过开展此试验取得的结果，且所述结果与试验目的一致。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="变异性"><a href="#变异性" class="headerlink" title="变异性"></a>变异性</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否正确计算了所有评估度量的标准偏差？</td>
+<td>已正确计算所有评估度量的标准偏差。</td>
+</tr>
+<tr>
+<td>是否通过推理说明每个分析标准偏差是正确的？</td>
+<td>每个评估度量都有清楚正确的解释，说明分析变异性是否可能匹配经验变异性。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="规模"><a href="#规模" class="headerlink" title="规模"></a>规模</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页面浏览量是否正确考虑了计划的分析？</td>
+<td>考虑到学生是否使用 Bonferroni 校正情况下所给的页面浏览量是正确的。</td>
+</tr>
+<tr>
+<td>是否基于风险选择了适当的试验暴露水平？</td>
+<td>将对试验的风险等级提供理由充分的论点，并将相应选择转移流量的部分。</td>
+</tr>
+<tr>
+<td>试验的持续时间是否正确考虑了暴露？</td>
+<td>试验的持续时间在考虑到所选转移流量部分后进行了正确计算。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="完整性检验"><a href="#完整性检验" class="headerlink" title="完整性检验"></a>完整性检验</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否正确执行了完整性检查？</td>
+<td>正确计算了所选的所有不变度量的完整性检查。</td>
+</tr>
+<tr>
+<td>是否分析了完整性检查的结果？</td>
+<td>评估了完整性检查：通过或未通过。    若未通过完整性检查，通过分析探索了失败原因并中止试验。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="效应量检验"><a href="#效应量检验" class="headerlink" title="效应量检验"></a>效应量检验</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否对所有评估度量的差异计算了置信区间？</td>
+<td>正确计算了置信区间并报告了所有评估度量的差异。</td>
+</tr>
+<tr>
+<td>是否正确评估了统计显著性与实际显著性？</td>
+<td>正确报告了所有评估度量的统计显著性与实际显著性。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="符号检验"><a href="#符号检验" class="headerlink" title="符号检验"></a>符号检验</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否对每个评估度量报告了符号检验 P 值，并表明符号检验是否具有统计显著性？</td>
+<td>对所有评估度量正确报告了 P 值和统计显著性。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="结果汇总"><a href="#结果汇总" class="headerlink" title="结果汇总"></a>结果汇总</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否提供了正当理由，说明是否选择使用 Bonferroni 校正？</td>
+<td>报告为是否选择使用 Bonferroni 校正提供了合理理由。</td>
+</tr>
+<tr>
+<td>是否分析了效应量检验和符号检验之间的所有差异？</td>
+<td>为效应量检验和符号检验之间的每项差异提供了充分合理的解释。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否基于试验结果提供了合理建议？</td>
+<td>提供了合理并用数据支持的建议。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="根进实验"><a href="#根进实验" class="headerlink" title="根进实验"></a>根进实验</h1><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>符合要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是否为所给目的进行了合理的试验，并提出了明确的假设？</td>
+<td>开展了值得检验的合理试验，并明确说明了试验结果假设。</td>
+</tr>
+<tr>
+<td>是否为提议的试验选择了适当的评估度量，并提供了支持推理？</td>
+<td>报告中选择的度量足以用于评估试验的假设，可在大多数基础设施下进行测量，且报告中提供了充足的支持推理。</td>
+</tr>
+<tr>
+<td>是否为试验选择了合理的转移单位？</td>
+<td>报告中说明了合理的转移单位，并提供了充分的支持理由。</td>
+</tr>
+</tbody>
+</table>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/08/03/AB-test-assessment/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
