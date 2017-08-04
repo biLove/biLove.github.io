@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>设计 AB Test | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="data," />
+  
+
+  <meta name="description" content="设计A/B 测试在网络世界中，当你做 A/B 测试时，要谨记的一件事是，确定用户是否会喜欢这个新产品或新功能，该改进对于公司总体目标有没有用处；所以在进行 A/B 测试时，你的目标是设计一个合理且能够给到你可复验的结果的实验，让你能够很好地决定是否要发布一款产品或功能。
+A/B 测试的方法一般来说，在科学领域，假设检验是确定创新的关键方法。在A/B测试中，我们最想看到的是对照组和实验组返回一致的响">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计 AB Test">
+<meta property="og:url" content="http://lilyalove.com/2017/08/04/AB-test-design/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="设计A/B 测试在网络世界中，当你做 A/B 测试时，要谨记的一件事是，确定用户是否会喜欢这个新产品或新功能，该改进对于公司总体目标有没有用处；所以在进行 A/B 测试时，你的目标是设计一个合理且能够给到你可复验的结果的实验，让你能够很好地决定是否要发布一款产品或功能。
+A/B 测试的方法一般来说，在科学领域，假设检验是确定创新的关键方法。在A/B测试中，我们最想看到的是对照组和实验组返回一致的响">
+<meta property="og:updated_time" content="2017-08-04T10:53:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计 AB Test">
+<meta name="twitter:description" content="设计A/B 测试在网络世界中，当你做 A/B 测试时，要谨记的一件事是，确定用户是否会喜欢这个新产品或新功能，该改进对于公司总体目标有没有用处；所以在进行 A/B 测试时，你的目标是设计一个合理且能够给到你可复验的结果的实验，让你能够很好地决定是否要发布一款产品或功能。
+A/B 测试的方法一般来说，在科学领域，假设检验是确定创新的关键方法。在A/B测试中，我们最想看到的是对照组和实验组返回一致的响">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#设计A-B-测试"><span class="toc-text">设计A/B 测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-B-测试的方法"><span class="toc-text">A/B 测试的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#A-B-测试的步骤"><span class="toc-text">A/B 测试的步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#试验假设"><span class="toc-text">试验假设</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择度量指标"><span class="toc-text">选择度量指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不变指标"><span class="toc-text">不变指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#评估指标"><span class="toc-text">评估指标</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#确定引流单元"><span class="toc-text">确定引流单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算实验规模"><span class="toc-text">计算实验规模</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计算实验所需时间"><span class="toc-text">计算实验所需时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#评估实验风险"><span class="toc-text">评估实验风险</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验分析"><span class="toc-text">实验分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#进行完整性（合理性）检查"><span class="toc-text">进行完整性（合理性）检查</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何进行完整性检查？"><span class="toc-text">如何进行完整性检查？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#检查实验组和对照组的总体规模，看是否具有可比性"><span class="toc-text">检查实验组和对照组的总体规模，看是否具有可比性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#检查问题"><span class="toc-text">检查问题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效应大小检验"><span class="toc-text">效应大小检验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#符号检验"><span class="toc-text">符号检验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验结果"><span class="toc-text">实验结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#建议"><span class="toc-text">建议</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-AB-test-design" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">设计 AB Test</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/数据分析/">数据分析</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/08/04/AB-test-design/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="设计A-B-测试"><a href="#设计A-B-测试" class="headerlink" title="设计A/B 测试"></a>设计A/B 测试</h1><p>在网络世界中，当你做 A/B 测试时，要谨记的一件事是，确定用户是否会喜欢这个新产品或新功能，该改进对于公司总体目标有没有用处；<br>所以在进行 A/B 测试时，你的目标是设计一个合理且能够给到你可复验的结果的实验，让你能够很好地决定是否要发布一款产品或功能。</p>
+<h4 id="A-B-测试的方法"><a href="#A-B-测试的方法" class="headerlink" title="A/B 测试的方法"></a>A/B 测试的方法</h4><p>一般来说，在科学领域，假设检验是确定创新的关键方法。<br>在A/B测试中，我们最想看到的是对照组和实验组返回一致的响应，让你能真正地决定试验的结构，确定实验组和对照组是否有很明显的差异。</p>
+<h4 id="A-B-测试的步骤"><a href="#A-B-测试的步骤" class="headerlink" title="A/B 测试的步骤"></a>A/B 测试的步骤</h4><ol>
+<li>提出试验假设，和希望通过实验取得的结果；</li>
+<li>选择度量指标，定义并验证指标；</li>
+<li>确定引流单元和总体</li>
+<li>确定试验规模、风险和实验时间；</li>
+<li>对结果进行完整性检验，确保一切顺利；</li>
+</ol>
+<h2 id="试验假设"><a href="#试验假设" class="headerlink" title="试验假设"></a>试验假设</h2><p>以Udacity在线学习网站为例，<br>先提出假设，例如，将开始按钮从粉色改成橘色，将提高按钮的点击概率。由于最终的业务指标是课程完成率，我们还可以假设上述改进会提高终极业务指标，即完成课程的总数。</p>
+<p>接下来，我们需要选择一个指标来测量这个变更。</p>
+<h2 id="选择度量指标"><a href="#选择度量指标" class="headerlink" title="选择度量指标"></a>选择度量指标</h2><p>根据实验设计，我们需要选择两种指标</p>
+<ol>
+<li>不变指标</li>
+<li>评估指标</li>
+</ol>
+<h4 id="不变指标"><a href="#不变指标" class="headerlink" title="不变指标"></a>不变指标</h4><p>不变指标用于不变量检查：这些指标在实验组和对照组中都不会更改。   </p>
+<p>我们需要对不变指标进行完整性检查，确保实验能够顺利实施。   </p>
+<p>如果不变指标通过了完整性检查，说明实验没有受到其他非实验因素的影响，后面对于评估指标的判断是可信的。   </p>
+<p>如果不变指标没有通过完整性检查，说明实验受到了其他因素的影响，这种情况下，我们需要找到影响实验的因素，再重新设计实验或排除该因素，直到不变指标通过完整性检查为止。</p>
+<h4 id="评估指标"><a href="#评估指标" class="headerlink" title="评估指标"></a>评估指标</h4><p>用来评估实验效果的指标。</p>
+<p>通过该指标，比较实验组和对照组是否存在统计显著性，从而提出建议。</p>
+<p>可以使用假设检验分析方法。</p>
+<h2 id="确定引流单元"><a href="#确定引流单元" class="headerlink" title="确定引流单元"></a>确定引流单元</h2><p>我们要选择总体。<br>—— 要判定哪些是合格对象，是所有人，还是仅限于美国，还是其他？在完整性检验与评价指标计算过程中，要保证测试与指标计算，施加与同等总体。</p>
+<p>我们要决定实验组和对照组中的实验对象是什么？<br>—— 总体中被选为测试对象的单元叫做分组单元，也就是引流单元。</p>
+<p>选择实验对象是指：<br>—— 选择合适的引流单元，引流单元也就是分组单元。</p>
+<p>常见的引流单元有：</p>
+<ol>
+<li>user-id ：用户ID</li>
+<li>cookie：网站自动为用户建立的</li>
+<li>event：一个事件，适用于不可见的更改，不然更改对于同一个用户有可能一会儿可见，一会儿不可见，用户无法获得一致的体验</li>
+<li>device ID：设备ID，只能标识移动设备，不能跨平台保持一致性</li>
+<li>IP address：IP地址，用户登录时使用的网不同，IP也会不一样</li>
+</ol>
+<p>引流单元的选择有以下几个条件：</p>
+<ol>
+<li>用户一致性。<ol>
+<li>针对可见更改或需要知道具体用户的更改，常用 user-id 和 cookie等引流单元。 <ol>
+<li>user-id：保持各个设备中的一致性</li>
+<li>cookie：保持登录前后的一致性</li>
+</ol>
+</li>
+<li>针对不可见更改<ol>
+<li>event</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>道德问题<ol>
+<li>如果使用 user-id，需要保证安全性和用户知情权</li>
+</ol>
+</li>
+<li>差异性<ol>
+<li>需要尽量使引流单元（分组单元）和分析单元一致。</li>
+<li>分析单元是指指标的分母，例如：计算点击率指标时，用点击量除以页面查看量，那么页面查看量就是分析单元</li>
+<li>如果分析单元不同于分组单元时，使用分析方法计算差异性时，会导致差异性大大增加。</li>
+<li>原因是：用分析方法计算差异时，我们会假设数据的分布，例如假设数据符合二项分布，并假设每次事件发生是独立的，例如，每次将cookie分到实验组或者对照组这个事件是独立的。如果引流单元和分析单元都是cookie，那我们假设每次事件独立是有效的。如果引流单元为 user-id，分析单元为 cookie，那假设每次事件独立则是无效的，因为按user-id分组，它们之间实际上已经存在了某种关系，而这种关系会导致差异性大大增加。也提高了实验的风险。</li>
+</ol>
+</li>
+</ol>
+<h2 id="计算实验规模"><a href="#计算实验规模" class="headerlink" title="计算实验规模"></a>计算实验规模</h2><p>在实验开始前，我们需要决定采集多少实验对象，来获取统计显著性结果。</p>
+<p>如果想发现任何有意思的东西，我们需要确保足够的功效，从而得到高概率的结果，也就是统计显著性。</p>
+<p>功效与规模呈现负面关系。<br>想要探测的改变越小，或者想要的置信度越高，需要运行的实验规模就越大，也就是对照组和实验组需要更多的实验对象。</p>
+<p>实验规模可以通过在线计算器来计算。<br>链接如下：<br><a href="http://www.evanmiller.org/ab-testing/sample-size.html#!10.93;80;5;1.56;1" target="_blank" rel="external">http://www.evanmiller.org/ab-testing/sample-size.html#!10.93;80;5;1.56;1</a></p>
+<p>实验规模由以下几个方面决定</p>
+<ol>
+<li>α 置信度</li>
+<li>β = P(fail to reject / null false)  （通常用1-β来视为实验的敏感度，敏感度越高，越容易检测到差异。根据经验，1-β 一般设置为 80%）</li>
+<li>dmin（<strong>最小实际显著性</strong>，也就是实验最小达到什么变化，才具有实际意义，这个值是根据经验估算出来的，需要考虑实际情况和其他成本）</li>
+<li>SE标准误差</li>
+</ol>
+<p>页面规模越大，标准误差越小。置信区间也就越小。</p>
+<h2 id="计算实验所需时间"><a href="#计算实验所需时间" class="headerlink" title="计算实验所需时间"></a>计算实验所需时间</h2><p>这个主要是根据实验总体规模，和每天能够分配到该A/B测试的流量来定的。</p>
+<p>主要会评估实验的风险，来确定可以投入的流量。</p>
+<p>另外，需要考虑实验时间。如果太长的话，可能会出现其他不可控因素。一般比较合适的时间是在两周左右。</p>
+<p>同时，对于可见的新功能改进，可以给用户留一定的探索时间。因为可能会有新奇效应。</p>
+<h2 id="评估实验风险"><a href="#评估实验风险" class="headerlink" title="评估实验风险"></a>评估实验风险</h2><p>风险主要是从一下几个方面来评估。</p>
+<ol>
+<li>从身体、情感、心理方面</li>
+<li>从道德伦理方面</li>
+<li>数据库安全方面</li>
+<li>数据敏感性方面</li>
+</ol>
+<p><strong>实验开始后，我们要按照实验设计，开始收集数据。达到预期时间后，根据数据来进行分析。</strong></p>
+<h1 id="实验分析"><a href="#实验分析" class="headerlink" title="实验分析"></a>实验分析</h1><h2 id="进行完整性（合理性）检查"><a href="#进行完整性（合理性）检查" class="headerlink" title="进行完整性（合理性）检查"></a>进行完整性（合理性）检查</h2><p>合理性检查的重要性：<br>由于实验过程中，有太多环节可能会出现差错，导致实验结果无效，例如，实验组和对照组分配错误，或设置了不同的流量筛选条件，或设计了采集数据的功能，但实际采集到的数据并不是目标对象，或计算点击概率的方法出现了错误，等等。</p>
+<p>所以，我们要在分析实验结果之前，对这些进行测试。</p>
+<p>合理性检查主要是检查不变指标。主要有两种检查对象：</p>
+<ol>
+<li>需要检查实验组和对照组的总体规模，看是否具有可比性；</li>
+<li>需要检查实际的不变量，这类指标不随实验的进行而发生改变，而你要做的就是检测它们是否没有发生变化；</li>
+</ol>
+<p>只有完成上述的完整性检查后，才能进入后续的分析阶段，判断实验是否合理，并提出建议。</p>
+<h3 id="如何进行完整性检查？"><a href="#如何进行完整性检查？" class="headerlink" title="如何进行完整性检查？"></a>如何进行完整性检查？</h3><p>检查数据在实验组和对照组中是否有合理的相似性。</p>
+<p>相似性是指，从统计学上来说，实验组和对照组的值没有显著性差异。</p>
+<h4 id="检查实验组和对照组的总体规模，看是否具有可比性"><a href="#检查实验组和对照组的总体规模，看是否具有可比性" class="headerlink" title="检查实验组和对照组的总体规模，看是否具有可比性"></a>检查实验组和对照组的总体规模，看是否具有可比性</h4><p>假设实验以cookies为转移单元。实验每天想实验组和对照组分配各一半流量，实验时间是15天。实验组分配到的总cookies数量是61818，对照组分配到的总cookies是64454.<br>如何判断对照组和实验组的cookie总量的差异是否在你的预料之内？</p>
+<p>对于这个问题，由于我们分配cookie时，会尽量保证两个组条件一致，故每条cookie进入实验组和对照组的概率是一样的，P = 0.5<br>由于分到实验组还是对照组，每次分配只能有一种结果，是相对对立的，且多次分配是相互独立的，故而分到对照组的次数（或者是实验组）遵循二项分布定理。所以，可以构建一个二项式置信区间。</p>
+<p>（二项分布：二项分布（英语：Binomial distribution）是n个独立的是/非试验中成功的次数的离散概率分布，其中每次试验的成功概率为p）</p>
+<p>在本例中，由于总体有12万数据，已经足够假设该二项分布逼近正态分布。</p>
+<ol>
+<li><p>计算二项分布的标准差，公式为 $SE = \sqrt{p(1-p)/N}$</p>
+</li>
+<li><p>由于 P=0.5， $SE = \sqrt{(0.5*(1-0.5)/(61818+64454))}$ = 0.0014   </p>
+</li>
+<li>在α = 0.05的情况下，$m = z<em>SE = 1.96</em>0.0014 = 0.0027$</li>
+<li>分配到对照组的概率的置信区间为： (0.0473, 0.0527)</li>
+</ol>
+<p>计算实际得到的对照组的概率为： P= 64454/(64454+61818) = 0.5104<br>不在置信区间内，故有可能是实验设置有问题。</p>
+<h5 id="检查问题"><a href="#检查问题" class="headerlink" title="检查问题"></a>检查问题</h5><p>在这种情况下，可以通过每天分配到对照组的概率来查看，是某天的数据出了问题，还是大部分出了问题，从而找到问题的原因。</p>
+<p>只有找到了问题，解决了问题，才能进行下一步的分析。</p>
+<h2 id="效应大小检验"><a href="#效应大小检验" class="headerlink" title="效应大小检验"></a>效应大小检验</h2><p>效应大小的评估方法：计算评估指标在实验组和对照组之间的差异的置信区间。<br>如果置信区间不包含 0（这就是说，你可以确信它是会变的），这个指标具有统计显著性。如果置信区间不包含实际显著性边界（这就是说，你可以确信变化对业务是有用的）。</p>
+<p>实际显著性边界是指根据经验，估算数据发生多少改变才是有意义的。这个根据网站的体量，以及进行功能改进的成本等等来估算，找到一个合适的值。只有改进至少达到这个值，才认为实验时有效果的。</p>
+<p><strong>案例基本数据如下：</strong></p>
+<p>假设评估指标为总转化率，总转化率 = 总试用课程量 / 总点击量<br>其中<br>对照组：总点击量17293、总试用课程用户量3785，P1 = 3785/17293<br>实验组：总点击量17260、总试用课程用户量3423，P2 = 3423/17260</p>
+<p><strong>则计算实验组与对照组差异的置信区间如下：</strong></p>
+<p>根据上述条件可知： P1 = 0.2189, P2 = 0.1983<br>实验组与对照组的概率差 P(diff) = P2-P1 = -0.0206</p>
+<p>接下来，我们通过组合概率来计算标准偏差和误差范围</p>
+<p>组合概率： $P(pool) = (x1 + x2)/(N1 + N2) = (3785+3423)/(17293+17260) = 0.2086$</p>
+<p>组合标准差：<br>SE(pool) = sqrt[p(pool)<em>(1-p(pool))</em>(1/N1 + 1/N2)]<br>= sqrt[0.2086<em>(1-2086)</em>(1/17293+1/17260)] = 0.0044</p>
+<p>误差范围：<br>$m = z<em>SE(pool) = 1.96</em>0.0044$ = 0.0086 (α=0.05)</p>
+<p>则置信区间为<br>下限：P(diff)-m = -0.0292<br>上限：P(diff)+m = -0.012</p>
+<p>由于 假设H0 是，实验组和对照组没有差异，就 d = 0, d~(0, SE(pool))<br>故，当 d &gt; m 或 d &lt; -m 时，可以拒绝零假设。由于 -0.0206 &lt; -m ，故拒绝零假设，实验组和对照组有负的显著性差异。</p>
+<p>由于根据经验估计的最小实际显著性是 d(min) = -0.01，而置信区间不包含 d(min), 故实验同时具有实际显著性。</p>
+<h2 id="符号检验"><a href="#符号检验" class="headerlink" title="符号检验"></a>符号检验</h2><p>可以通过以下链接来进行符号检验：<br><a href="http://graphpad.com/quickcalcs/binomial1.cfm" target="_blank" rel="external">http://graphpad.com/quickcalcs/binomial1.cfm</a></p>
+<p>符号检验需要返回查看每天的具体数据，需要计算总天数（假设为23），和对照组大于实验组的天数（假设为19）。<br>由于假设是实验组和对照组相似，故我们假设对照组&gt;实验组的概率为0.5，反之也为0.5</p>
+<p>我们通过在线计算器，算出发生概率P-value = 0.0026<br>而 α = 0.05， 故而可以说小概率事件发生了，这种情况具有显著性。</p>
+<p>如果 P-value &gt; α ，说明不具有统计显著性。</p>
+<h1 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h1><p>查看分析的结果与预期结果是否一致，再根据结果来评估实验是否可行</p>
+<h1 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h1><p>给出建议。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/08/04/AB-test-design/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

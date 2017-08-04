@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>AB Test 介绍 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="data," />
+  
+
+  <meta name="description" content="AB测试介绍什么是AB测试？A/B Test 是一个用于在线测试的常规方法，用于测试新产品或新功能。
+如何操作我们需要设置两组用户，一组设置为对照组，采用已有的产品或功能，另一组为实验组，采用新版产品或功能。然后，找到上述两组用户做出的不同响应，确认哪个版本的功能更好。
+A/B Test 适用情况存在明确的对照组和实验组，能够选择合适的指标评估此类改变，适合使用A/B Test。
+
+我们可以通过A">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AB Test 介绍">
+<meta property="og:url" content="http://lilyalove.com/2017/08/03/AB-test-introduce/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AB测试介绍什么是AB测试？A/B Test 是一个用于在线测试的常规方法，用于测试新产品或新功能。
+如何操作我们需要设置两组用户，一组设置为对照组，采用已有的产品或功能，另一组为实验组，采用新版产品或功能。然后，找到上述两组用户做出的不同响应，确认哪个版本的功能更好。
+A/B Test 适用情况存在明确的对照组和实验组，能够选择合适的指标评估此类改变，适合使用A/B Test。
+
+我们可以通过A">
+<meta property="og:updated_time" content="2017-08-03T04:05:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AB Test 介绍">
+<meta name="twitter:description" content="AB测试介绍什么是AB测试？A/B Test 是一个用于在线测试的常规方法，用于测试新产品或新功能。
+如何操作我们需要设置两组用户，一组设置为对照组，采用已有的产品或功能，另一组为实验组，采用新版产品或功能。然后，找到上述两组用户做出的不同响应，确认哪个版本的功能更好。
+A/B Test 适用情况存在明确的对照组和实验组，能够选择合适的指标评估此类改变，适合使用A/B Test。
+
+我们可以通过A">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#AB测试介绍"><span class="toc-text">AB测试介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是AB测试？"><span class="toc-text">什么是AB测试？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何操作"><span class="toc-text">如何操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-B-Test-适用情况"><span class="toc-text">A/B Test 适用情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-B-Test-不适用的情况"><span class="toc-text">A/B Test 不适用的情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对于不适用情况，补充技术"><span class="toc-text">对于不适用情况，补充技术</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-AB-test-introduce" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">AB Test 介绍</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/数据分析/">数据分析</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/08/03/AB-test-introduce/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="AB测试介绍"><a href="#AB测试介绍" class="headerlink" title="AB测试介绍"></a>AB测试介绍</h1><h2 id="什么是AB测试？"><a href="#什么是AB测试？" class="headerlink" title="什么是AB测试？"></a>什么是AB测试？</h2><p>A/B Test 是一个用于在线测试的常规方法，用于测试新产品或新功能。</p>
+<h3 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a>如何操作</h3><p>我们需要设置两组用户，一组设置为对照组，采用已有的产品或功能，另一组为实验组，采用新版产品或功能。<br>然后，找到上述两组用户做出的不同响应，确认哪个版本的功能更好。</p>
+<h3 id="A-B-Test-适用情况"><a href="#A-B-Test-适用情况" class="headerlink" title="A/B Test 适用情况"></a>A/B Test 适用情况</h3><p>存在明确的对照组和实验组，能够选择合适的指标评估此类改变，适合使用A/B Test。</p>
+<ol>
+<li>我们可以通过A/B Test 对很大范围的事情进行测试，比如增加一些新功能，或界面中增加的内容，网站的不同外观等。</li>
+<li>我们还可以将A/B Test用于十分复杂的改变，例如排名变动。</li>
+<li>我们也可以针对不确定用户是否会注意到的改变进行测试，例如页面加载时间。</li>
+</ol>
+<p>A/B Test 案例如下：</p>
+<ol>
+<li><p>Amazon首次开始做个性化推荐时，他们想看一下用户是否真的会购买更多商品，他们发现，由于个性化推荐，他们的收益有了显著增加。</p>
+</li>
+<li><p>Linkedin测试了一个改变，尝试确定他们是否应显示新文章还是鼓励大家增加新联系人，这就是排名变动。</p>
+</li>
+<li>100ms的页面加载时间不是很多，但是 Google 和 Amazon 都运行了测试。Amazon 在2007年证实，每个页面增加 100ms 的延时，会导致收入降低 1%。对于Google，也得到了相似的结果。 你可以发现，平均来看，100ms 看起来并不多，但每增加 100ms 的延迟，人们查询的数量真的降低了。</li>
+</ol>
+<p>这就是可以从 A/B Test中学到的东西。</p>
+<h3 id="A-B-Test-不适用的情况"><a href="#A-B-Test-不适用的情况" class="headerlink" title="A/B Test 不适用的情况"></a>A/B Test 不适用的情况</h3><ol>
+<li><strong>A/B Test 无法真实的告诉你是否遗漏了什么东西。</strong><br> 例如：亚马逊想知道页面上是否有用户需要，但是他们还没有提供的商品。这种情况没办法用 A/B Test 来寻找答案。</li>
+<li><strong>A/B Test 不适用与测试新的体验。</strong><br> 例如：某 SaaS 公司已经有了免费服务，例如有待办事项列表。他们想提供带有其他功能的高级服务，如需使用高级服务，用户需要升级，创建登录账户，并探索新的功能。<br> 这种情况下，也不适合用 A/B Test 来寻找答案。</li>
+<li><strong>A/B 不适用与需要很长时间才能验证的测试。</strong><br> 例如：某租房网站，想测试促进用户推荐页面给好友有没有效果，但是这个效果检验需要很长时间，可能是一周，可能是半年，一年。因为租房并不是经常发生的。这种情况也不适合。</li>
+</ol>
+<p>另外，当你测试新的体验时，你当前已有的那些用户，可能会觉得改变了他们的体验，这被称为改变厌恶症；<br>另一种情况是，他们觉得这些都是新的，然后尝试所有东西，这被称为新奇效应。</p>
+<h3 id="对于不适用情况，补充技术"><a href="#对于不适用情况，补充技术" class="headerlink" title="对于不适用情况，补充技术"></a>对于不适用情况，补充技术</h3><p>用户在你的网站上进行操作的日志，可以通过检查或观察分析日志，得出结论，是什么原因造成其行为的改变。<br>然后可能要沿着这个方向努力，然后设计实验，完成随机化和试验，进行前瞻性分析。</p>
+<p>可以把两种技术结合来使用：<br>查看操作日志得出假设，运行A/B Test验证你的理论是否合理。</p>
+<p>还有一些其他技术：</p>
+<ol>
+<li>用户体验研究</li>
+<li>焦点小组</li>
+<li>调查</li>
+<li>人为评价</li>
+</ol>
+<p>A/B Test 可以给我们大量宽泛的定量数据，而上述技术可以给我们非常深入的定性数据作为A/B Test 的补充。</p>
+<p>这些技术可以告诉我们该爬哪座山，也就是得出假设。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/08/03/AB-test-introduce/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
