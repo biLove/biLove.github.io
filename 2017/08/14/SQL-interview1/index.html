@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL 面试题(一) | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="interview," />
+  
+
+  <meta name="description" content="SQL 面试题(一)从baseball数据表中，选出第20到30条数据本题应该使用 limit 来完成操作
+select * from baseball limit 19,11;or select * from baseball limit 11 offset 19;
+这两句的作用是一样的，都是读取第20~30条数据。由于数据表是从0开始的，所以第20条数据的行号是19。20~30条一共有11条数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL 面试题(一)">
+<meta property="og:url" content="http://lilyalove.com/2017/08/14/SQL-interview1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SQL 面试题(一)从baseball数据表中，选出第20到30条数据本题应该使用 limit 来完成操作
+select * from baseball limit 19,11;or select * from baseball limit 11 offset 19;
+这两句的作用是一样的，都是读取第20~30条数据。由于数据表是从0开始的，所以第20条数据的行号是19。20~30条一共有11条数">
+<meta property="og:updated_time" content="2017-08-14T13:32:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL 面试题(一)">
+<meta name="twitter:description" content="SQL 面试题(一)从baseball数据表中，选出第20到30条数据本题应该使用 limit 来完成操作
+select * from baseball limit 19,11;or select * from baseball limit 11 offset 19;
+这两句的作用是一样的，都是读取第20~30条数据。由于数据表是从0开始的，所以第20条数据的行号是19。20~30条一共有11条数">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-面试题-一"><span class="toc-text">SQL 面试题(一)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从baseball数据表中，选出第20到30条数据"><span class="toc-text">从baseball数据表中，选出第20到30条数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drop、truncate、delete的差别"><span class="toc-text">drop、truncate、delete的差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drop、delete与truncate分别在什么场景之下使用？"><span class="toc-text">drop、delete与truncate分别在什么场景之下使用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表格名称有空格时，如何修改表格名称？"><span class="toc-text">表格名称有空格时，如何修改表格名称？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#超键、候选键、主键、外键分别是什么？"><span class="toc-text">超键、候选键、主键、外键分别是什么？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#结合实例的具体解释："><span class="toc-text">结合实例的具体解释：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是事务？"><span class="toc-text">什么是事务？</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-SQL-interview1" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">SQL 面试题(一)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.14</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/面试/">面试</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/08/14/SQL-interview1/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="SQL-面试题-一"><a href="#SQL-面试题-一" class="headerlink" title="SQL 面试题(一)"></a>SQL 面试题(一)</h1><h3 id="从baseball数据表中，选出第20到30条数据"><a href="#从baseball数据表中，选出第20到30条数据" class="headerlink" title="从baseball数据表中，选出第20到30条数据"></a>从baseball数据表中，选出第20到30条数据</h3><p>本题应该使用 limit 来完成操作</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> baseball <span class="keyword">limit</span> <span class="number">19</span>,<span class="number">11</span>;</span></span><br><span class="line"></span><br><span class="line">or </span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">select</span> * <span class="keyword">from</span> baseball <span class="keyword">limit</span> <span class="number">11</span> <span class="keyword">offset</span> <span class="number">19</span>;</span></span><br></pre></td></tr></table></figure>
+<p>这两句的作用是一样的，都是读取第20~30条数据。由于数据表是从0开始的，所以第20条数据的行号是19。20~30条一共有11条数据，故选择的数据条数是11.    </p>
+<h3 id="drop、truncate、delete的差别"><a href="#drop、truncate、delete的差别" class="headerlink" title="drop、truncate、delete的差别"></a>drop、truncate、delete的差别</h3><p>在SQL中，这三个关键词的作用都是用来删除，但是存在一些差别</p>
+<ol>
+<li>drop用来删除整个表格，包括表的结构、依赖和数据；truncate和delete用来删除表格中所有的数据，不删除表的结构；</li>
+<li>truncate用来删除表格中所有数据，delete可以结合where来使用，删除选中的数据，若不结合where使用，则也是删除表格中所有数据；</li>
+<li>drop和truncate属于DDL（data define language数据库定义语音），操作直接生效，不会放到rollback segment中，故不能回滚；</li>
+<li>delete属于DML（Data Manipulation Language数据库操作语音），操作会被放到rollback segment中，事务提交后才能生效，也就是需要commit，故可以回滚；</li>
+<li>运行速度上，一般drop &gt; truncate &gt; delete;</li>
+<li>表和索引所占空间。当表被TRUNCATE 后，这个表和索引所占用的空间会恢复到初始大小，而DELETE操作不会减少表或索引所占用的空间。drop语句将表所占用的空间全释放掉。</li>
+</ol>
+<p>操作语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> table_name <span class="keyword">where</span> colum_name = <span class="string">'str'</span>;</span></span><br><span class="line">// 可以删除所有 colum_name = 'str'的行</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">delete</span> <span class="keyword">from</span> table_name;</span></span><br><span class="line">// 可以删除该表中所有数据，保留表的结构和依赖</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">drop</span> <span class="keyword">table</span> table_name;</span></span><br><span class="line">// 删除数据表 table_name，包括表结构，依赖和数据，并释放所占空间</span><br><span class="line"></span><br><span class="line">// 在sqlite3中，没有<span class="operator"><span class="keyword">truncate</span>关键词，可以使用<span class="keyword">delete</span>或者<span class="keyword">drop</span>代替<span class="keyword">truncate</span>进行操作；</span></span><br></pre></td></tr></table></figure>
+<h3 id="drop、delete与truncate分别在什么场景之下使用？"><a href="#drop、delete与truncate分别在什么场景之下使用？" class="headerlink" title="drop、delete与truncate分别在什么场景之下使用？"></a>drop、delete与truncate分别在什么场景之下使用？</h3><p>不再需要一张表的时候，用drop<br>想删除部分数据行时候，用delete，并且带上where子句<br>保留表而删除所有数据的时候用truncate</p>
+<h3 id="表格名称有空格时，如何修改表格名称？"><a href="#表格名称有空格时，如何修改表格名称？" class="headerlink" title="表格名称有空格时，如何修改表格名称？"></a>表格名称有空格时，如何修改表格名称？</h3><p>可以用单引号将表格名称括起来，作为一个整体。例如表格名称为 Titanic Data ，要改名为 titanic</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="string">'Titanic Data'</span> <span class="keyword">rename</span> <span class="keyword">to</span> titanic;</span></span><br></pre></td></tr></table></figure>
+<p>用alter来更改表格的名称。alter是DDL语言，立即生效。</p>
+<h3 id="超键、候选键、主键、外键分别是什么？"><a href="#超键、候选键、主键、外键分别是什么？" class="headerlink" title="超键、候选键、主键、外键分别是什么？"></a>超键、候选键、主键、外键分别是什么？</h3><p>首先，定义如下：</p>
+<p>超键(super key):在关系中能唯一标识元组的<strong>属性集</strong>称为关系模式的超键，超键包含候选键和主键；  </p>
+<p>候选键(candidate key):不含有多余属性的超键称为候选键；候选键是可以作为唯一标识的属性；候选键包含主键；   </p>
+<p>主键(primary key):用户选作元组标识的一个候选键称为主键，主键是从候选键中选出来的，是人为定义的。   </p>
+<p>外键(foreign key)：如果关系模式其他表的主键，可以作为当前表的外键，主要用来描述两个表的关系。</p>
+<p>（其中，元组指数据表中的一行，也就是一条记录。在数据表中，每行是一个元组，每列是一个属性。）</p>
+<h4 id="结合实例的具体解释："><a href="#结合实例的具体解释：" class="headerlink" title="结合实例的具体解释："></a>结合实例的具体解释：</h4><p>假设有如下两个表：<br>学生（学号，姓名，性别，身份证号，教师编号）<br>教师（教师编号，姓名，工资）</p>
+<p>超键：<br>由超键的定义可知，学生表中含有学号或者身份证号的任意组合都为此表的超键。如：（学号）、（学号，姓名）、（身份证号，性别）等。</p>
+<p>候选键：<br>候选键属于超键，它是最小的超键，就是说如果再去掉候选键中的任何一个属性它就不再是超键了。学生表中的候选键为：（学号）、（身份证号）。</p>
+<p>主键：<br>主键就是候选键里面的一个，是人为规定的，例如学生表中，我们通常会让“学号”做主键，教师表中让“教师编号”做主键。</p>
+<p>外键：<br>外键比较简单，学生表中的外键就是“教师编号”。外键主要是用来描述两个表的关系。</p>
+<h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>事务（Transaction）是并发控制的基本单位。所谓的事务，它是一个操作序列，这些操作要么都执行，要么都不执行，它是一个不可分割的工作单位。事务是数据库维护数据一致性的单位，在每个事务结束时，都能保持数据一致性。</p>
+<p>DML的操作都需要事务提交后才能生效，也就是需要commit。<br>DML是数据库操作语言 Data Manipulation Language，包括select、insert、update、delete</p>
+<p>事务就是一系列的操作语言组成的操作序列，当我们commit之后，就可以运行。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">// 选出表中所有的数据</span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> table_name;</span></span><br><span class="line">// 我们可以使用 where 来设置筛选条件，用order by对数据进行排序，用limit来设置需要的数据条数和数据开始的索引，用 distinct 来对数据去重</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 插入一条数据</span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name <span class="keyword">VALUES</span> (值<span class="number">1</span>，值<span class="number">2</span>，……);</span></span><br><span class="line">or </span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (列<span class="number">1</span>，列<span class="number">2</span>，……) <span class="keyword">VALUES</span> (值<span class="number">1</span>，值<span class="number">2</span>，……);</span></span><br><span class="line">// 使用方法一时，需要给每列都赋值，使用方法二时，可以选择需要插入数据的列，以及对应插入的值，主键必须要有数据</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name <span class="keyword">WHERE</span> colum_name = ‘<span class="keyword">str</span>’;</span></span><br><span class="line">// 删除colum_name列中，所有等于str的行</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name;</span></span><br><span class="line">// 删除所有的行</span><br><span class="line"></span><br><span class="line">// <span class="operator"><span class="keyword">update</span>用来修改表中的数据</span><br><span class="line"><span class="keyword">UPDATE</span> 表名称 <span class="keyword">SET</span> 列名称 = 新值 <span class="keyword">WHERE</span> 列名称 = 某值</span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> Person <span class="keyword">SET</span> FirstName = <span class="string">'Fred'</span> <span class="keyword">WHERE</span> LastName = <span class="string">'Wilson'</span> ;</span></span><br><span class="line">// 如果 Lastname 为 'Wilson' 的元组的 FirstName为空，则新添 FirstName值，如果 FirstName 已经有值了，则更新 FirstName 的值</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">UPDATE</span> Person <span class="keyword">SET</span> Address = <span class="string">'Zhongshan 23'</span>, City = <span class="string">'Nanjing'</span></span><br><span class="line"><span class="keyword">WHERE</span> LastName = <span class="string">'Wilson'</span>;</span></span><br><span class="line">// 此处是设置多列的情况</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/08/14/SQL-interview1/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
