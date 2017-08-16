@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>SQL 面试题(二) | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="interview," />
+  
+
+  <meta name="description" content="SQL 面试题（二）找出baseball表中，name属性中包含“To”字符的元组属性表示列名称，元组表示一条数据。本题可以用 like 操作符，以及 SQL 的通配符。
+like 操作符用于在 WHERE 子句中搜索列中的指定模式。like 一般搭配通配符使用not like 可以选取与指定模式不同的其他值
+SELECT * FROM baseball WHERE name LIKE &apos;TO%&apos;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL 面试题(二)">
+<meta property="og:url" content="http://lilyalove.com/2017/08/16/SQL-interview2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SQL 面试题（二）找出baseball表中，name属性中包含“To”字符的元组属性表示列名称，元组表示一条数据。本题可以用 like 操作符，以及 SQL 的通配符。
+like 操作符用于在 WHERE 子句中搜索列中的指定模式。like 一般搭配通配符使用not like 可以选取与指定模式不同的其他值
+SELECT * FROM baseball WHERE name LIKE &apos;TO%&apos;">
+<meta property="og:updated_time" content="2017-08-16T06:12:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL 面试题(二)">
+<meta name="twitter:description" content="SQL 面试题（二）找出baseball表中，name属性中包含“To”字符的元组属性表示列名称，元组表示一条数据。本题可以用 like 操作符，以及 SQL 的通配符。
+like 操作符用于在 WHERE 子句中搜索列中的指定模式。like 一般搭配通配符使用not like 可以选取与指定模式不同的其他值
+SELECT * FROM baseball WHERE name LIKE &apos;TO%&apos;">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-面试题（二）"><span class="toc-text">SQL 面试题（二）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#找出baseball表中，name属性中包含“To”字符的元组"><span class="toc-text">找出baseball表中，name属性中包含“To”字符的元组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加一个列"><span class="toc-text">增加一个列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新表中的数据"><span class="toc-text">更新表中的数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是视图"><span class="toc-text">什么是视图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是索引"><span class="toc-text">什么是索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL中的函数"><span class="toc-text">SQL中的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的语法"><span class="toc-text">函数的语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数基本类型"><span class="toc-text">函数基本类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#合计函数-Aggregate-function"><span class="toc-text">合计函数 Aggregate function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scalar-函数"><span class="toc-text">Scalar 函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-操作符"><span class="toc-text">Union 操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#join"><span class="toc-text">join</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#left-join"><span class="toc-text">left join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#right-join"><span class="toc-text">right join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FULL-JOIN"><span class="toc-text">FULL JOIN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#where-和-on-、having的差别"><span class="toc-text">where 和 on 、having的差别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#where-和-on-差别"><span class="toc-text">where 和 on 差别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#where-和-having-的差别"><span class="toc-text">where 和 having 的差别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#举例"><span class="toc-text">举例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-SQL-interview2" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">SQL 面试题(二)</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.16</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/面试/">面试</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/08/16/SQL-interview2/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="SQL-面试题（二）"><a href="#SQL-面试题（二）" class="headerlink" title="SQL 面试题（二）"></a>SQL 面试题（二）</h1><h2 id="找出baseball表中，name属性中包含“To”字符的元组"><a href="#找出baseball表中，name属性中包含“To”字符的元组" class="headerlink" title="找出baseball表中，name属性中包含“To”字符的元组"></a>找出baseball表中，name属性中包含“To”字符的元组</h2><p>属性表示列名称，元组表示一条数据。本题可以用 like 操作符，以及 SQL 的通配符。</p>
+<p>like 操作符用于在 WHERE 子句中搜索列中的指定模式。<br>like 一般搭配通配符使用<br>not like 可以选取与指定模式不同的其他值</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> baseball <span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span> <span class="string">'TO%'</span>;</span></span><br><span class="line">// % 是 SQL 的通配符，用来指代1个或多个字符</span><br></pre></td></tr></table></figure>
+<p>常见的通配符有</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>表示一个或多个字符</td>
+</tr>
+<tr>
+<td>-</td>
+<td>表示一个字符</td>
+</tr>
+<tr>
+<td>[charlist]</td>
+<td>字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td>[^ charlist] 或者 [!charlist]</td>
+<td>不包含在字符列中的任何单一字符</td>
+</tr>
+</tbody>
+</table>
+<p>例如，要找出baseball表中，name属性中以“T”或者“N”或者“J”字符开头的所有元组</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">select * from baseball&#10;where name like &#39;[TNJ]%&#39;;&#10;&#10;// &#22914;&#26524;&#19981;&#25903;&#25345;&#23383;&#31526;&#21015;&#30340;&#34920;&#36798;&#27861;&#65292;&#21487;&#20197;&#20351;&#29992;or &#25110;&#32773; and&#20851;&#38190;&#35789;&#10;SELECT * FROM baseball&#10;WHERE name LIKE &#39;N%&#39; or name like &#39;T%&#39; or name like &#39;J%&#39;;&#10;&#10;//  [!charlist] &#21487;&#20197;&#29992;not like&#26469;&#28385;&#36275;</span><br></pre></td></tr></table></figure>
+<h2 id="增加一个列"><a href="#增加一个列" class="headerlink" title="增加一个列"></a>增加一个列</h2><p>使用 alter 操作符</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="keyword">test</span> <span class="keyword">add</span> <span class="keyword">column</span> Email <span class="built_in">text</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">alter</span> <span class="keyword">table</span> table_name <span class="keyword">add</span> <span class="keyword">column</span> column_name datatype;</span></span><br></pre></td></tr></table></figure>
+<h2 id="更新表中的数据"><a href="#更新表中的数据" class="headerlink" title="更新表中的数据"></a>更新表中的数据</h2><p>为 test 表中，Id=1的元组添加 Email值，值为“10177157@qq.com”<br>使用 update 操作符</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">UPDATE</span> <span class="keyword">test</span> <span class="keyword">SET</span> Emali = <span class="string">'10177157@qq.com'</span> <span class="keyword">WHERE</span> <span class="keyword">Id</span> =<span class="number">2</span>;</span></span><br></pre></td></tr></table></figure>
+<h2 id="什么是视图"><a href="#什么是视图" class="headerlink" title="什么是视图"></a>什么是视图</h2><p>view 是从真实的基础表 table 里面，根据用户的需要，做成的虚表。</p>
+<p>view有以下几个特点：</p>
+<ol>
+<li>view 中的数据可以来自于多个表；</li>
+<li>view 的数据会随着真实表格的数据变化而变化；</li>
+<li>view 生成以后，只能使用select查询，不能用update、delete、insert来修改虚拟表的内容</li>
+<li>view 不同的view可以针对不同需求的人，展示不同的数据，而不必向他们展示所有的数据，可以保持数据的保密性；</li>
+<li>view 不能进行修改；</li>
+<li>view 还可以用来简化查询。如果我们经常使用某些数据，就可以把他们做成一个view，每次直接使用 <figure class="highlight"><figcaption><span>* from view_name``` 就可以了，比每次重新写SQL语句要简单的多；</span></figcaption><table><tr><td class="code"><pre><span class="line">&#10;&#35821;&#27861;&#10;&#10;```sql&#10;CREATE VIEW view_name AS&#10;SELECT column_name(s) FROM table_name&#10;WHERE condition; &#10;// &#24314;&#31435;&#19968;&#20010;&#35270;&#22270; view&#65292;&#20174;&#30495;&#23454;&#34920; table_name &#20013;&#36873;&#20986;&#28385;&#36275; condition &#26465;&#20214;&#30340;&#25968;&#25454;&#10;&#10;DROP VIEW view_name;&#10;// &#21024;&#38500;&#35270;&#22270; view_name</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h2><p>索引是一种特殊的查询表，可以用来更快更搞笑的查询数据。索引类似于图书馆的图书目录，可以方便用户更快的找到想要的数据。</p>
+<p>不过，由于索引表会跟着数据的更新而更新，所以，如果数据表经常更新数据或插入、删除数据，则不适合建立索引，不然会导致更新表的数据变慢很多。</p>
+<p>另外，索引不适合以下情况：</p>
+<ol>
+<li>小的数据表不适合使用索引；</li>
+<li>频繁更改数据的数据表；</li>
+<li>取值单一的数据表中的列不适合作为索引；</li>
+<li>列中包含大数或者Null值，不适合作为索引。</li>
+</ol>
+<p>语法</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name</span><br><span class="line"><span class="keyword">ON</span> table_name;</span></span><br><span class="line">// 为table_name 建立索引</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name</span><br><span class="line"><span class="keyword">ON</span> table_name(column_name);</span></span><br><span class="line">// 为 table_name表中的 column_name列建立索引</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name</span><br><span class="line"><span class="keyword">ON</span> table_name(column_name1,column_name2,……);</span></span><br><span class="line">// 聚簇索引，即为多个列建立索引</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> index_name</span><br><span class="line"><span class="keyword">on</span> table_name (column_name);</span></span><br><span class="line">// 唯一索引</span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> index_name;</span></span><br><span class="line">// 删除索引</span><br></pre></td></tr></table></figure>
+<h2 id="SQL中的函数"><a href="#SQL中的函数" class="headerlink" title="SQL中的函数"></a>SQL中的函数</h2><p>SQL 拥有很多可用于计数和计算的内建函数。</p>
+<h3 id="函数的语法"><a href="#函数的语法" class="headerlink" title="函数的语法"></a>函数的语法</h3><p>内建 SQL 函数的语法是：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">function</span>(列) <span class="keyword">FROM</span> 表</span></span><br></pre></td></tr></table></figure>
+<h3 id="函数基本类型"><a href="#函数基本类型" class="headerlink" title="函数基本类型"></a>函数基本类型</h3><p>主要分为两类，</p>
+<ol>
+<li>合计函数（Aggregate function），面对一系列的值，返回一个单一的值</li>
+<li>Scalar函数：面对一个输入值，返回基于输入值的单一值</li>
+</ol>
+<h4 id="合计函数-Aggregate-function"><a href="#合计函数-Aggregate-function" class="headerlink" title="合计函数 Aggregate function"></a>合计函数 Aggregate function</h4><p>合计函数常与group by操作符一起使用，用来分组计数<br>也可以和 order by 一起使用，来对数据进行排序</p>
+<ol>
+<li>count(column) 求行数</li>
+<li>avg 求平均</li>
+<li>sum 求和</li>
+<li>min 求最小值</li>
+<li>max 求最大值</li>
+<li>count(distinct column) 求不同值的个数</li>
+</ol>
+<p>例如：选择视图base中的height列，并将数据按照height分组，计算每组的数量num，并将num按照倒序排列</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> height,<span class="keyword">count</span>(*) <span class="keyword">as</span> <span class="keyword">num</span></span><br><span class="line"><span class="keyword">FROM</span> base</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> height</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">num</span> <span class="keyword">DESC</span>;</span></span><br></pre></td></tr></table></figure>
+<h4 id="Scalar-函数"><a href="#Scalar-函数" class="headerlink" title="Scalar 函数"></a>Scalar 函数</h4><ol>
+<li>round(column_name, decimals) 将数据舍入为指定小数；</li>
+<li>Now()，返回当前时间</li>
+<li>len(column_name)，返回当前字符的长度</li>
+<li>其他</li>
+</ol>
+<h2 id="Union-操作符"><a href="#Union-操作符" class="headerlink" title="Union 操作符"></a>Union 操作符</h2><p>union 操作符可以<strong>合并</strong>两个或多个select语句，并取不同的值（即会默认去重）。</p>
+<p>union all 默认不去重，返回所有的值。</p>
+<p>使用union 或 union all时，select语句必须有相同数量的列和数据类型。</p>
+<p>union以后，会选择第一个select语句里面的列，作为列名。并将其他select语句里面的值对应插入结果中</p>
+<p>例如，我们要将 baseball 表的 name、height 列和 test 表中的 Name、Age 列合并</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">select</span> <span class="keyword">name</span>,height <span class="keyword">from</span> baseball</span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">Name</span>,Age <span class="keyword">from</span> <span class="keyword">test</span>;</span></span><br></pre></td></tr></table></figure>
+<p>结果会用 name 和 height 作为列名。</p>
+<h2 id="join"><a href="#join" class="headerlink" title="join"></a>join</h2><p>引用两个表时，我们可以使用join和on关键词，也可以直接用where来进行匹配</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> Persons.LastName, Persons.FirstName, Orders.OrderNo</span><br><span class="line"><span class="keyword">FROM</span> Persons, Orders</span><br><span class="line"><span class="keyword">WHERE</span> Persons.Id_P = Orders.Id_P </span><br><span class="line"></span><br><span class="line">与</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> Persons.LastName, Persons.FirstName, Orders.OrderNo</span><br><span class="line"><span class="keyword">FROM</span> Persons</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> Orders</span><br><span class="line"><span class="keyword">ON</span> Persons.Id_P = Orders.Id_P</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> Persons.LastName</span><br><span class="line"></span><br><span class="line">是相同的作用</span></span><br></pre></td></tr></table></figure>
+<p>inner join和join的作用是一样的，在表中至少存在一个匹配时，返回行。如果 “Persons” 中的行在 “Orders” 中没有匹配，就不会列出这些行。</p>
+<h3 id="left-join"><a href="#left-join" class="headerlink" title="left join"></a>left join</h3><p>在某些数据库中，left join 也叫做 left out join.</p>
+<p>LEFT JOIN 关键字会从左表 (table_name1) 那里返回所有的行，即使在右表 (table_name2) 中没有匹配的行。</p>
+<p><strong>tab1</strong></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<p><strong>tab2</strong></p>
+<table>
+<thead>
+<tr>
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>aaa</td>
+</tr>
+<tr>
+<td>20</td>
+<td>bbb</td>
+</tr>
+<tr>
+<td>20</td>
+<td>ccc</td>
+</tr>
+</tbody>
+</table>
+<p>我们使用left join来连接 tab1和tab2时，（tab1作为左表），会默认输出tab1的所有行，如果对应tab2中没有匹配的值，则没有值的部分用空值或者null表示。如果对应到tab2中有多个匹配值，则把每个值都打印出来。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> tab1.<span class="keyword">id</span>, tab1.<span class="keyword">size</span>, tab2.<span class="keyword">name</span></span><br><span class="line"><span class="keyword">FROM</span> tab1</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tab2</span><br><span class="line"><span class="keyword">ON</span> tab1.<span class="keyword">size</span> = tab2.<span class="keyword">size</span>;</span></span><br></pre></td></tr></table></figure>
+<p>打印结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>aaa</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td>bbb</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td>ccc</td>
+</tr>
+<tr>
+<td>3</td>
+<td>30</td>
+<td><null></null></td>
+</tr>
+</tbody>
+</table>
+<p>如果反过来，把tab2作为左表，则输出结果为</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>aaa</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td>bbb</td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td>ccc</td>
+</tr>
+</tbody>
+</table>
+<h3 id="right-join"><a href="#right-join" class="headerlink" title="right join"></a>right join</h3><p>RIGHT JOIN 关键字会右表 (table_name2) 那里返回所有的行，即使在左表 (table_name1) 中没有匹配的行。</p>
+<p>与left join的原理类似，不过在sqlite3中，不支持right join和full join，其他数据库可能支持。</p>
+<h3 id="FULL-JOIN"><a href="#FULL-JOIN" class="headerlink" title="FULL JOIN"></a>FULL JOIN</h3><p>只要其中某个表存在匹配，FULL JOIN 关键字就会返回行。</p>
+<p>语法</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">JOIN</span> table_name2 </span><br><span class="line"><span class="keyword">ON</span> table_name1.column_name=table_name2.column_name</span></span><br></pre></td></tr></table></figure>
+<p>注释：在某些数据库中， FULL JOIN 称为 FULL OUTER JOIN。</p>
+<p>从上面的分析我们可以知道，join的作用主要是匹配，通过不同表的列之间的关系进行匹配，而union的作用主要是合并，只需要合并的select语句有相同的列数和相似的数据类型就可以进行合并。</p>
+<p>也就是，如果我们需要，查询的时候，可以把name和Email合并到同一个列中。</p>
+<h2 id="where-和-on-、having的差别"><a href="#where-和-on-、having的差别" class="headerlink" title="where 和 on 、having的差别"></a>where 和 on 、having的差别</h2><p>首先，where 和 on 和 having 都是可以加条件的子句。</p>
+<h3 id="where-和-on-差别"><a href="#where-和-on-差别" class="headerlink" title="where 和 on 差别"></a>where 和 on 差别</h3><p>如下表</p>
+<table>
+<thead>
+<tr>
+<th>num</th>
+<th>where</th>
+<th>on </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>在一个表设置过滤条件，或多个表设置过滤条件的情况下都可以用。</td>
+<td>在两个或多个表连接的时候才能用</td>
+</tr>
+<tr>
+<td>2</td>
+<td>where是先进行统计以后，在进行过滤</td>
+<td>on是先把不符合条件的记录过滤后才进行统计</td>
+</tr>
+<tr>
+<td>3</td>
+<td>where 和 on比较，where后执行</td>
+<td>where 和 on比较，on 先执行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="where-和-having-的差别"><a href="#where-和-having-的差别" class="headerlink" title="where 和 having 的差别"></a>where 和 having 的差别</h3><p>在 SQL 中增加 HAVING 子句原因是，WHERE 关键字无法与合计函数一起使用。</p>
+<ol>
+<li>如果要对 合计函数进行过滤，那就要使用 having。</li>
+<li>一般来说，having要和合计函数（例如：count、sum、avg、min、max）一起使用，group by 一起使用。</li>
+<li>一般是on 最先生效，再是 where进行条件过滤，最后才是计算合计函数，再用having对合计函数筛选。</li>
+</ol>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>用 left join 来检验 on 和 where 的差别。<br>left join 会返回左表所有的行，不论右表能不能匹配条件，如果右表有多个匹配值。</p>
+<p>用on的话，是先把不符合条件的记录过滤后才进行统计；<br>用where的话，系统首先根据各个表之间的联接条件，把多个表合成一个临时表后，再由where进行过滤；</p>
+<p>故，对于上述的 tab1 和 tab2，<br><strong>如果使用on进行过滤：</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> tab1</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> tab2</span><br><span class="line"><span class="keyword">on</span> tab1.<span class="keyword">size</span> = tab2.<span class="keyword">size</span></span><br><span class="line"><span class="keyword">and</span> tab2.<span class="keyword">name</span> = <span class="string">'aaa'</span>;</span></span><br></pre></td></tr></table></figure>
+<p>这里会先按照 tab1.size = tab2.size 和 条件 tab2.name = ‘aaa’进行过滤，再将左右表进行连接，故打印结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>size</th>
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>10</td>
+<td>aaa </td>
+</tr>
+<tr>
+<td>2</td>
+<td>20</td>
+<td><null></null></td>
+<td><null></null></td>
+</tr>
+<tr>
+<td>3</td>
+<td>30</td>
+<td><null></null></td>
+<td><null></null></td>
+</tr>
+</tbody>
+</table>
+<p><strong>如果使用where进行过滤</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> tab1</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> tab2</span><br><span class="line"><span class="keyword">on</span> tab1.<span class="keyword">size</span> = tab2.<span class="keyword">size</span></span><br><span class="line"><span class="keyword">where</span> tab2.<span class="keyword">name</span> = <span class="string">'aaa'</span>;</span></span><br></pre></td></tr></table></figure>
+<p>这里会先按照 tab1.size = tab2.size 将左右表进行连接，再使用where进行条件过滤，故打印结果如下：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>size</th>
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>10</td>
+<td>10</td>
+<td>aaa </td>
+</tr>
+</tbody>
+</table>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>on、where、having 都可以进行过滤，作用的顺序不一样。<br>on是先过滤再连接；where是先连接，在过滤<br>having可以和where一起使用，先用where进行条件过滤，再用having进行合计函数过滤。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/08/16/SQL-interview2/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
