@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python类中self的作用 | Hexo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python," />
+  
+
+  <meta name="description" content="举例如下：
+class Person:	def setName(self,name):		self.name = name		self.inputname = name		input1 = name		def getName(self):		return self.name		def greet(self):		print &quot;Hello world! I&apos;m %s .&quot; % self.name
+其">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python类中self的作用">
+<meta property="og:url" content="http://lilyalove.com/2017/09/19/python_class_self/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="举例如下：
+class Person:	def setName(self,name):		self.name = name		self.inputname = name		input1 = name		def getName(self):		return self.name		def greet(self):		print &quot;Hello world! I&apos;m %s .&quot; % self.name
+其">
+<meta property="og:updated_time" content="2017-09-19T09:53:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python类中self的作用">
+<meta name="twitter:description" content="举例如下：
+class Person:	def setName(self,name):		self.name = name		self.inputname = name		input1 = name		def getName(self):		return self.name		def greet(self):		print &quot;Hello world! I&apos;m %s .&quot; % self.name
+其">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=eaf5ab1e" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css" type="text/css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#我们对比-self-inputname-和-input1-这两个变量，都赋值为-name，那么这两个值有什么区别呢？"><span class="toc-text">我们对比 self.inputname 和 input1 这两个变量，都赋值为 name，那么这两个值有什么区别呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#self-是什么对象？"><span class="toc-text">self 是什么对象？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#换句话说"><span class="toc-text">换句话说</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-python_class_self" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python类中self的作用</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.09.19</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>Lilya Bao</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/编程/">编程</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://bilove.github.io//2017/09/19/python_class_self/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>举例如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span>:</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">setName</span><span class="params">(self,name)</span>:</span></span><br><span class="line">		self.name = name</span><br><span class="line">		self.inputname = name</span><br><span class="line">		input1 = name</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">getName</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">return</span> self.name</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">greet</span><span class="params">(self)</span>:</span></span><br><span class="line">		<span class="keyword">print</span> <span class="string">"Hello world! I'm %s ."</span> % self.name</span><br></pre></td></tr></table></figure>
+<p>其中，self是对于对象自身的引用。</p>
+<h4 id="我们对比-self-inputname-和-input1-这两个变量，都赋值为-name，那么这两个值有什么区别呢？"><a href="#我们对比-self-inputname-和-input1-这两个变量，都赋值为-name，那么这两个值有什么区别呢？" class="headerlink" title="我们对比 self.inputname 和 input1 这两个变量，都赋值为 name，那么这两个值有什么区别呢？"></a>我们对比 <code>self.inputname</code> 和 <code>input1</code> 这两个变量，都赋值为 <code>name</code>，那么这两个值有什么区别呢？</h4><p>在这里，self 改变了变量的作用域。<br>不加 self 的变量是局部变量，作用域是当前函数；加了 self 的变量是实例变量，作用域是当前实例。</p>
+<p>也就是，我们在外部将类 Person 实例化时，可以调用它的 inputname 变量，因为这个变量是实例变量，作用域当前实例，却调用不了 input1 变量，因为这个变量是局部变量，只能在setName 函数中使用。</p>
+<h4 id="self-是什么对象？"><a href="#self-是什么对象？" class="headerlink" title="self 是什么对象？"></a>self 是什么对象？</h4><p>我们这里假设 lil = Person()，其中 lil 是 Person 类的一个实例。<br>当我们调用 lil 的 setName 和 getName 或 greet 方法时，lil 自动将自己作为第一个参数，传入函数中，因此形象的称为 self<br>所以 self 是一个实例，指的实例本身。</p>
+<p>通过使用 self，我们可以在其成员方法中访问他们要对其特性进行操作的对象本身了。</p>
+<h4 id="换句话说"><a href="#换句话说" class="headerlink" title="换句话说"></a>换句话说</h4><p>这样说很拗口，换句话说，我们通过使用 self，将 attribute 的作用域从当前函数 变成 当前实例，这样这个 attribute 就可以在整个实例中都有效。这样便于我们在不同的成员方法中对这个 attribute 进行操作。例如上面例子中的 self.name ，因为使用了 self，我们在 getName 和 greet 中均可以使用该实例变量。</p>
+<p>而且，对于实例 lil，我们也可以直接调用 name 这个attribute，也就是 <code>lil.name</code>，是有效的。但是 <code>lil.input1</code> 是无效的，会提示“类里面没有这个属性”。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://lilyalove.com/2017/09/19/python_class_self/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
